@@ -1,0 +1,58 @@
+---
+import { pageSections } from '../lib/consts';
+---
+
+<nav>
+  {pageSections.map(({ id, label }) => <a href={`#${id}`}>{label}</a>)}
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+  }
+
+  nav a {
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding-left: 1.2em;
+    transition: color 0.2s ease;
+  }
+
+  nav a::before {
+    content: '';
+    /* position: absolute; */
+    left: 0;
+    top: 0;
+    color: black;
+  }
+
+  nav a.active::before {
+    content: '# ';
+  }
+
+  nav a.active {
+    color: #0077cc;
+  }
+</style>
+
+<script is:inline>
+  const navLinks = document.querySelectorAll('nav a');
+  const hash = location.hash;
+  [...navLinks]
+    .find(link => hash === link.getAttribute('href') || hash === '')
+    ?.classList.add('active');
+</script>
+
+<script>
+  import { scrollSpyNavigation } from '../lib/scrollSpyNavigation';
+
+  scrollSpyNavigation();
+</script>

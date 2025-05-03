@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Geist Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #1bb010;
+}
+
+html.dark {
+  background-color: #c11717;
+}
+
+:root {
+  --background-color-1: #111;
+  --background-color-2: #222;
+}
+
+:root.dark {
+  --background-color-1: #fff;
+  --background-color-2: #ddd;
+}
+
+
