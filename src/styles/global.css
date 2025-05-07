@@ -1,13 +1,9 @@
 html {
   scroll-behavior: smooth;
-  background-color: #1bb010;
-
-  --background-color-1: #fff;
-  --background-color-2: #ddd;
 }
 
-html.dark {
-  background-color: #c11717;
-  --background-color-1: #111;
-  --background-color-2: #222;
+body {
+  color: var(--text-1);
+  background-color: var(--background-1);
+  font-family: var(--font-geist-mono);
 }

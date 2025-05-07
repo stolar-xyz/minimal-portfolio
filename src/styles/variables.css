@@ -1,0 +1,12 @@
+html {
+  --gray-100: #fafafa;
+  --gray-200: #dadada;
+  --gray-300: #b8b8b8;
+  --gray-400: #909090;
+  --gray-500: #7a7a7a;
+  --gray-600: #5e5e5e;
+  --gray-700: #4c4c4c;
+  --gray-800: #2f2f2f;
+  --gray-900: #202020;
+  --gray-950: #141414;
+}
