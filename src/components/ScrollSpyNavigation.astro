@@ -20,26 +20,20 @@ import { pageSections } from '../lib/consts';
   nav a {
     position: relative;
     text-decoration: none;
-    font-weight: bold;
-    color: black;
+    color: var(--text-2);
     padding-left: 1.2em;
     transition: color 0.2s ease;
-  }
-
-  nav a::before {
-    content: '';
-    /* position: absolute; */
-    left: 0;
-    top: 0;
-    color: black;
+		text-transform: lowercase;
   }
 
   nav a.active::before {
-    content: '# ';
+    content: '#';
+    margin-right: 4px;
+    color: var(--text-1);
   }
 
   nav a.active {
-    color: #0077cc;
+    color: var(--text-1);
   }
 </style>
 
