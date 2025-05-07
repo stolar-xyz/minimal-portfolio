@@ -1,5 +1,7 @@
 ---
 import { Font } from 'astro:assets';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import Analytics from '@vercel/analytics/astro';
 ---
 
 <!doctype html>
@@ -14,6 +16,8 @@ import { Font } from 'astro:assets';
   </head>
   <body>
     <slot />
+    <SpeedInsights />
+    <Analytics />
   </body>
 </html>
 
