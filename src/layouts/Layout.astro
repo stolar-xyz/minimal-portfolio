@@ -2,6 +2,9 @@
 import { Font } from 'astro:assets';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import Analytics from '@vercel/analytics/astro';
+import '../styles/global.css';
+import '../styles/theme.css';
+import '../styles/variables.css';
 ---
 
 <!doctype html>
@@ -20,9 +23,3 @@ import Analytics from '@vercel/analytics/astro';
     <Analytics />
   </body>
 </html>
-
-<style>
-	body {
-		font-family: var(--font-geist-mono);
-	}
-</style>
