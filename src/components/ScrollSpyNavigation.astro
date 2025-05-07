@@ -52,7 +52,6 @@ import { pageSections } from '../lib/consts';
 </script>
 
 <script>
-  export function scrollSpyNavigation() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll<HTMLAnchorElement>('nav a');
     const getLinkSectionId = (link: HTMLAnchorElement) =>
@@ -96,5 +95,4 @@ import { pageSections } from '../lib/consts';
     );
 
     sections.forEach(section => observer.observe(section));
-  }
 </script>
