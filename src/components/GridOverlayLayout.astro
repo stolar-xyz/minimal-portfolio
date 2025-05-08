@@ -1,0 +1,80 @@
+<div aria-hidden="true"></div>
+<main>
+  <slot />
+</main>
+
+<style>
+  :root {
+    --column: 80px;
+    --gutter: 20px;
+    --line: 1px;
+    --cycle: calc(var(--column) + var(--gutter));
+
+    --grid-2: calc(2 * var(--cycle) - var(--gutter) + var(--line));
+    --grid-4: calc(4 * var(--cycle) - var(--gutter) + var(--line));
+    --grid-6: calc(6 * var(--cycle) - var(--gutter) + var(--line));
+
+    --animation-duration: 0.8s;
+    --animation-delay-step: 0.15s;
+    --animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  div,
+  div::before,
+  div::after {
+    position: fixed;
+    left: 50%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--grid-overlay-color) 0 var(--line),
+      transparent var(--line) var(--column),
+      var(--grid-overlay-color) var(--column) calc(var(--column) + var(--line)),
+      transparent calc(var(--column) + var(--line))
+        calc(var(--column) + var(--gutter))
+    );
+  }
+
+  div {
+    width: var(--grid-2);
+    animation: fall-smooth-landing var(--animation-duration)
+      var(--animation-timing-function) 0s forwards;
+  }
+
+  div::before {
+    content: '';
+    width: var(--grid-4);
+    animation: fall-smooth-landing var(--animation-duration)
+      var(--animation-timing-function) var(--animation-delay-step) forwards;
+  }
+
+  div::after {
+    content: '';
+    width: var(--grid-6);
+    animation: fall-smooth-landing var(--animation-duration)
+      var(--animation-timing-function) calc(2 * var(--animation-delay-step))
+      forwards;
+  }
+
+  main {
+    display: grid;
+    column-gap: var(--gutter);
+    max-width: var(--grid-6);
+    grid-template-columns: repeat(6, var(--column));
+    margin: 0 auto;
+    position: relative;
+  }
+
+  @keyframes fall-smooth-landing {
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0%);
+    }
+  }
+</style>
