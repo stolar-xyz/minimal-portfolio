@@ -4,6 +4,7 @@ import ThemeToggler from '../components/ThemeToggler.astro';
 import Layout from '../layouts/Layout.astro';
 import ScrollSpyNavigation from '../components/ScrollSpyNavigation.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
+import GridOverlayLayout from '../components/GridOverlayLayout.astro';
 import { pageSections } from '../lib/consts';
 import '../styles/global.css';
 ---
@@ -16,9 +17,9 @@ import '../styles/global.css';
     <ScrollSpyNavigation />
   </div>
   <ScrollProgress />
-  <main>
+  <GridOverlayLayout>
     {pageSections.map(({ id, label }) => <section id={id}>{label}</section>)}
-  </main>
+  </GridOverlayLayout>
 </Layout>
 
 <style>
@@ -31,9 +32,8 @@ import '../styles/global.css';
   }
 
   section {
+    grid-column: span 6;
     min-height: 100vh;
-    align-items: center;
-    justify-content: center;
     font-size: 3rem;
   }
 </style>

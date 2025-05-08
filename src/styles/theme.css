@@ -10,6 +10,7 @@ html {
   --icon-press: var(--gray-950);
   --scroll-progress-active: var(--gray-950);
   --scroll-progress-inactive: var(--gray-300);
+  --grid-overlay-color: var(--gray-300);
 }
 
 html.dark {
@@ -24,4 +25,5 @@ html.dark {
   --icon-press: var(--gray-100);
   --scroll-progress-active: var(--gray-100);
   --scroll-progress-inactive: var(--gray-600);
+  --grid-overlay-color: var(--gray-600);
 }
