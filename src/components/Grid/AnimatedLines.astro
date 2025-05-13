@@ -1,0 +1,68 @@
+---
+type Props = {
+  lines: number;
+  delayStep: number;
+  direction: 'up' | 'down';
+};
+
+const { lines, delayStep, direction } = Astro.props;
+---
+
+{
+  Array.from({ length: lines }).map((_, index) => {
+    const middlePoint = (lines - 1) / 2;
+    const distanceFromMiddle = Math.abs(index - middlePoint);
+    const animationDelayValue = (distanceFromMiddle * delayStep).toFixed(2);
+    const animationDelay = `${animationDelayValue}s`;
+
+    return (
+      <div
+        class="lines"
+        style={{ animationDelay }}
+        class:list={{
+          'left-edge': index === 0,
+          'right-edge': index === lines - 1,
+          'lines-up': direction === 'up',
+          'lines-down': direction === 'down',
+        }}
+      />
+    );
+  })
+}
+
+<style>
+  .lines {
+    opacity: 0;
+    border-right: 1px solid var(--grid-overlay-color);
+    border-left: 1px solid var(--grid-overlay-color);
+  }
+
+  .left-edge {
+    border-left: unset;
+  }
+
+  .right-edge {
+    border-right: unset;
+  }
+
+  .lines-down {
+    transform-origin: top;
+    animation: scale-lines 1s ease-in-out forwards;
+  }
+
+  .lines-up {
+    transform-origin: bottom;
+    animation: scale-lines 1s ease-in-out forwards;
+  }
+
+  @keyframes scale-lines {
+    from {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+</style>

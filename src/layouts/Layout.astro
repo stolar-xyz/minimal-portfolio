@@ -5,10 +5,11 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 import '../styles/theme.css';
 import '../styles/variables.css';
+import ThemeToggler from '../components/ThemeToggler.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={Astro.currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -20,6 +21,44 @@ import '../styles/variables.css';
     <SpeedInsights />
   </head>
   <body>
+    <div>
+      <ThemeToggler />
+      <a href="/">Home</a>
+      <a href="/grid">Grid</a>
+      <a href="/grid2">Grid 2</a>
+      <a href="/grid3">Grid 3</a>
+      <br>
+      <a href="/grid4">Grid 4</a>
+      <a href="/grid5">Grid 5</a>
+      <a href="/grid6">Grid 6</a>
+    </div>
     <slot />
+    <div id="language-toast-container"></div>
   </body>
 </html>
+
+<style>
+  div {
+    position: fixed;
+    top: 10rem;
+    left: 10rem;
+    z-index: 1000;
+  }
+</style>
+
+<script>
+  import { getTranslation } from '../i18n/utils';
+  import { checkPreferredLanguage } from '../lib/checkPreferredLanguage';
+
+  const currentLocale = document.documentElement.lang;
+  const preferredLanguage = checkPreferredLanguage(currentLocale);
+
+  if (preferredLanguage) {
+    const translation = getTranslation(preferredLanguage);
+    const toastContainer = document.getElementById('language-toast-container');
+
+    if (toastContainer) {
+      toastContainer.innerHTML = translation.navigation.home;
+    }
+  }
+</script>

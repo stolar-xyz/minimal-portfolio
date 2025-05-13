@@ -1,0 +1,34 @@
+---
+import AnimatedLines from './AnimatedLines.astro';
+
+const LINES = 7;
+// Możemy dostosować DELAY_STEP, aby pasował do nowego charakteru animacji
+const DELAY_STEP = 0.09;
+---
+
+<div class="grid-animation-wrapper" aria-hidden="true">
+  <AnimatedLines lines={LINES} delayStep={DELAY_STEP} direction={'down'} />
+  <AnimatedLines lines={LINES} delayStep={DELAY_STEP} direction={'up'} />
+</div>
+
+<style define:vars={{ 'grid-lines': LINES }}>
+  :root {
+    --gapping-width: 20px;
+    --column-width: 80px;
+    /* ULEPSZENIE: Definiujemy niestandardowy easing tutaj */
+
+  }
+
+  .grid-animation-wrapper {
+    display: grid;
+    height: 100vh;
+    pointer-events: none;
+    grid-template-columns: repeat(var(--grid-lines), var(--gapping-width));
+    column-gap: var(--column-width);
+    justify-content: center;
+    /* ULEPSZENIE: Dodajemy perspektywę dla efektu 3D */
+    /* perspective: 1000px; */
+    /* Opcjonalnie: Jeśli linie wydają się "uciekać" za bardzo przy rotacji */
+    /* perspective-origin: center center; */
+  }
+</style>

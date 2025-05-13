@@ -1,0 +1,107 @@
+---
+type Props = {
+  lines: number;
+  delayStep: number;
+  direction: 'up' | 'down';
+  animationDuration?: number; // Nowy prop
+};
+
+const { lines, delayStep, direction, animationDuration = 1.2 } = Astro.props;
+---
+
+{
+  Array.from({ length: lines }).map((_, index) => {
+    const middlePoint = (lines - 1) / 2;
+    const distanceFromMiddle = Math.abs(index - middlePoint);
+    const animationDelayValue = (distanceFromMiddle * delayStep).toFixed(2);
+    const animationDelay = `${animationDelayValue}s`;
+
+    return (
+      <div
+        class="lines"
+        style={{
+          animationDelay,
+          animationDuration: `${animationDuration}s`, // Ustawienie czasu trwania animacji
+        }}
+        class:list={{
+          'left-edge': index === 0,
+          'right-edge': index === lines - 1,
+          'lines-up': direction === 'up',
+          'lines-down': direction === 'down',
+        }}
+      />
+    );
+  })
+}
+
+<style>
+  .lines {
+    opacity: 0;
+    border-right: 1px solid var(--grid-overlay-color);
+    border-left: 1px solid var(--grid-overlay-color);
+    /* Wspólne właściwości animacji - czas i opóźnienie są ustawiane inline */
+    animation-name: scale-lines-enhanced; /* Nowa nazwa animacji */
+    /* Dynamiczna funkcja timingowa - możesz ją dostosować na cubic-bezier.com */
+    animation-timing-function: cubic-bezier(0.64, 0.04, 0.35, 1.3); /* przykład "back" easing - lekkie cofnięcie i overshoot */
+    /* animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* inny przykład z "overshoot" */
+    animation-fill-mode: forwards;
+  }
+
+  .left-edge {
+    border-left: unset;
+  }
+
+  .right-edge {
+    border-right: unset;
+  }
+
+  .lines-down {
+    transform-origin: top;
+  }
+
+  .lines-up {
+    transform-origin: bottom;
+  }
+
+  /* Ulepszona animacja @keyframes */
+  @keyframes scale-lines-enhanced {
+    0% {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    /* Możemy dodać krok pośredni, jeśli chcemy bardziej kontrolować opacity vs scale */
+    /* Np. 60% { opacity: 0.8; } */
+    /* W przypadku użycia cubic-bezier, które samo w sobie tworzy "overshoot",
+       jawne definiowanie scaleY > 1 w klatce kluczowej może nie być konieczne,
+       lub może być użyte do wzmocnienia efektu.
+       Poniżej prostsza wersja, polegająca na sile cubic-bezier. */
+    70% { /* Linia osiąga pełną przezroczystość wcześniej */
+        opacity: 1;
+    }
+    100% {
+      transform: scaleY(1); /* cubic-bezier zajmie się dynamiką dojścia do tej wartości */
+      opacity: 1;
+    }
+  }
+
+  /* Alternatywne @keyframes z jawnym overshoot, jeśli cubic-bezier nie daje pożądanego efektu */
+  /*
+  @keyframes scale-lines-overshoot {
+    0% {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    60% {
+      opacity: 1;
+    }
+    80% {
+      transform: scaleY(1.05); // Lekkie przekroczenie
+      opacity: 1;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+  */
+</style>
