@@ -1,0 +1,43 @@
+---
+import { getLocalesNavigation } from '../i18n/utils';
+
+const currentLocale = Astro.currentLocale;
+const supportedLanguages = getLocalesNavigation();
+---
+
+<div class="language-switcher">
+  {
+    supportedLanguages.map(({ label, path }) => (
+      <>
+        {currentLocale === label ? (
+          <span class="active">{label}</span>
+        ) : (
+          <a href={path}>{label}</a>
+        )}
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .language-switcher {
+    position: fixed;
+    top: 200px;
+    right: 120px;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 100;
+  }
+
+  .language-switcher a {
+    text-decoration: none;
+  }
+
+  .language-switcher a:hover {
+    text-decoration: underline;
+  }
+
+  .language-switcher .active {
+    text-decoration: underline;
+  }
+</style>

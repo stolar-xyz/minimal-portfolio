@@ -1,28 +1,35 @@
 ---
 import DownloadButton from '../components/DownloadButton.astro';
-import ThemeToggler from '../components/ThemeToggler.astro';
 import Layout from '../layouts/Layout.astro';
 import ScrollSpyNavigation from '../components/ScrollSpyNavigation.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
 import GridOverlayLayout from '../components/GridOverlayLayout.astro';
 import { pageSections } from '../lib/consts';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import '../styles/global.css';
+import Logo from '../assets/icons/logo.svg';
 ---
 
 <Layout>
   <div>
-    <ThemeToggler />
-    <DownloadButton fileName="CV-pl.pdf" />
     <DownloadButton fileName="CV-en.pdf" />
+    <LanguageSwitcher />
     <ScrollSpyNavigation />
+    <Logo width={100} height={64} fill="currentColor" />
   </div>
   <ScrollProgress />
   <GridOverlayLayout>
-    {pageSections.map(({ id, label }) => <section id={id}>{label}</section>)}
+    {
+      pageSections.map(({ id, label }) => (
+        <section id={id}>
+          <h2>{label}</h2>
+        </section>
+      ))
+    }
   </GridOverlayLayout>
 </Layout>
 
-<style>
+<style is:global>
   div {
     position: fixed;
     top: 0;
@@ -35,5 +42,11 @@ import '../styles/global.css';
     grid-column: span 6;
     min-height: 100vh;
     font-size: 3rem;
+    right: 210px;
+    position: relative;
+  }
+
+  section span {
+    white-space: nowrap;
   }
 </style>
