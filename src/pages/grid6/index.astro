@@ -4,5 +4,19 @@ import GridOverlay from '../../components/Grid6/Overlay.astro';
 ---
 
 <Layout>
-  <GridOverlay />
+  <span>ease-out-circ</span>
+  <GridOverlay cubicBezier="0.075, 0.82, 0.165, 1" delayStep={0.15} />
+  <style>
+    span {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
 </Layout>

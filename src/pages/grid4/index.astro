@@ -1,8 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import GridOverlay from '../../components/Grid4/Overlay.astro';
+import GridOverlay from '../../components/Grid6/Overlay.astro';
 ---
 
 <Layout>
-  <GridOverlay />
+  <span>ease-out-quint</span>
+  <GridOverlay cubicBezier="0.23, 1, 0.32, 1" delayStep={0.15} />
 </Layout>
+
+<style>
+  span {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10; /* Ensure it's on top */
+    color: white; /* Or a suitable color for visibility */
+    background-color: rgba(0, 0, 0, 0.5); /* Slight background for contrast */
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace; /* Good for displaying easing names */
+  }
+</style>
