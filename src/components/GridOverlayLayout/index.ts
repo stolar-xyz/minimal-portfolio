@@ -1,1 +1,1 @@
-export { default } from "./GridOverlayLayout.astro";
+export { default } from './GridOverlayLayout.astro';
