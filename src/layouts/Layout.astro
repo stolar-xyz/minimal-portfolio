@@ -2,6 +2,7 @@
 import { Font } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import GridOverlayLayout from '@components/GridOverlayLayout';
 import '@styles/global.css';
 import '@styles/theme.css';
 import '@styles/variables.css';
@@ -20,6 +21,8 @@ import '@styles/variables.css';
     <SpeedInsights />
   </head>
   <body>
-    <slot />
+    <GridOverlayLayout>
+      <slot />
+    </GridOverlayLayout>
   </body>
 </html>

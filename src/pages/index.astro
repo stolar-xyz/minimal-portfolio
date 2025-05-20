@@ -4,7 +4,6 @@ import DownloadButton from '@components/DownloadButton.astro';
 import ThemeToggler from '@components/ThemeToggler.astro';
 import ScrollSpyNavigation from '@components/ScrollSpyNavigation.astro';
 import ScrollProgress from '@components/ScrollProgress.astro';
-import GridOverlayLayout from '@components/GridOverlayLayout';
 import { pageSections } from '@lib/consts';
 ---
 
@@ -16,9 +15,7 @@ import { pageSections } from '@lib/consts';
     <ScrollSpyNavigation />
   </div>
   <ScrollProgress />
-  <GridOverlayLayout>
     {pageSections.map(({ id, label }) => <section id={id}>{label}</section>)}
-  </GridOverlayLayout>
 </Layout>
 
 <style>

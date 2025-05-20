@@ -1,0 +1,100 @@
+---
+import AnimatedColumns, {
+  type Props as AnimatedColumnsProps,
+} from './AnimatedColumns.astro';
+
+type AnimatedColumnsSettings = Record<
+  'columns-sm' | 'columns-md' | 'columns-lg',
+  Pick<AnimatedColumnsProps, 'animatedColumns' | 'totalColumns'>
+>;
+
+const ANIMATED_COLUMNS: AnimatedColumnsSettings = {
+  'columns-sm': {
+    animatedColumns: 2,
+    totalColumns: 2,
+  },
+  'columns-md': {
+    animatedColumns: 4,
+    totalColumns: 6,
+  },
+  'columns-lg': {
+    animatedColumns: 6,
+    totalColumns: 12,
+  },
+};
+---
+
+<div class="grid-layout">
+  <slot />
+</div>
+<div class="grid-overlay" aria-hidden="true">
+  {
+    Object.entries(ANIMATED_COLUMNS).map(([className, columns]) => (
+      <>
+        <AnimatedColumns direction="down" className={className} {...columns} />
+        <AnimatedColumns direction="up" className={className} {...columns} />
+      </>
+    ))
+  }
+</div>
+
+<style
+  define:vars={{
+    'grid-columns-sm': ANIMATED_COLUMNS['columns-sm'].totalColumns,
+    'grid-columns-md': ANIMATED_COLUMNS['columns-md'].totalColumns,
+    'grid-columns-lg': ANIMATED_COLUMNS['columns-lg'].totalColumns,
+  }}
+>
+  @import '@styles/media.css';
+
+  .grid-layout,
+  .grid-overlay {
+    --margin-layout: var(--space-32);
+    --grid-columns: var(--grid-columns-sm);
+
+    display: grid;
+    margin: 0 var(--margin-layout);
+    column-gap: var(--space-20);
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+
+    @media (--tablet) {
+      --margin-layout: var(--space-24);
+      --grid-columns: var(--grid-columns-md);
+    }
+
+    @media (--wide-tablet) {
+      --margin-layout: var(--space-40);
+      --grid-columns: var(--grid-columns-lg);
+    }
+  }
+
+  .grid-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .columns-sm {
+    display: initial;
+  }
+
+  @media (--tablet) {
+    .columns-sm {
+      display: none;
+    }
+
+    .columns-md {
+      display: initial;
+    }
+  }
+
+  @media (--wide-tablet) {
+    .columns-md {
+      display: none;
+    }
+
+    .columns-lg {
+      display: initial;
+    }
+  }
+</style>
