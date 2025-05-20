@@ -1,0 +1,94 @@
+---
+export type Props = {
+  direction: 'up' | 'down';
+  animatedColumns: number;
+  totalColumns: number;
+  className?: string;
+};
+
+const { direction, animatedColumns, totalColumns, className, ...rest } =
+  Astro.props;
+
+const DELAY = 0.25;
+
+const getGridColumn = (index: number) =>
+  Math.floor((totalColumns - animatedColumns) / 2) + index;
+
+const getAnimationDelay = (index: number) => {
+  const order = Math.abs(index - animatedColumns / 2);
+  const animationDelay = (order * DELAY).toFixed(3);
+
+  return `${animationDelay}s`;
+};
+---
+
+{
+  Array.from({ length: animatedColumns }).map((_, i) => (
+    <div
+      class:list={[
+        'columns',
+        className,
+        {
+          up: direction === 'up',
+          down: direction === 'down',
+        },
+      ]}
+      style={{
+        gridColumn: getGridColumn(i + 1),
+        '--delay-before': getAnimationDelay(i),
+        '--delay-after': getAnimationDelay(i + 1),
+      }}
+      {...rest}
+    />
+  ))
+}
+
+<style>
+  .columns {
+    display: none;
+    position: relative;
+
+    &.up {
+      transform-origin: bottom;
+    }
+
+    &.down {
+      transform-origin: top;
+    }
+
+    &::before {
+      animation-delay: var(--delay-before);
+    }
+
+    &::after {
+      right: 0;
+      animation-delay: var(--delay-after);
+    }
+
+    &::before,
+    &::after {
+      --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      width: 1px;
+      background: var(--grid-overlay-color);
+      transform-origin: inherit;
+      animation: columns-appear 1s var(--ease-in-out-cubic) forwards;
+    }
+  }
+
+  @keyframes columns-appear {
+    from {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+</style>
