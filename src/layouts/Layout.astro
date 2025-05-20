@@ -9,7 +9,7 @@ import '@styles/variables.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={Astro.currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -24,5 +24,23 @@ import '@styles/variables.css';
     <GridOverlayLayout>
       <slot />
     </GridOverlayLayout>
+    <div id="language-toast-container"></div>
   </body>
 </html>
+
+<script>
+  import { getTranslation } from '@i18n/utils';
+  import { checkPreferredLanguage } from '@lib/checkPreferredLanguage';
+
+  const currentLocale = document.documentElement.lang;
+  const preferredLanguage = checkPreferredLanguage(currentLocale);
+
+  if (preferredLanguage) {
+    const translation = getTranslation(preferredLanguage);
+    const toastContainer = document.getElementById('language-toast-container');
+
+    if (toastContainer) {
+      toastContainer.innerHTML = translation.navigation.home;
+    }
+  }
+</script>
