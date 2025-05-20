@@ -56,15 +56,6 @@ const getAnimationDelay = (index: number) => {
       transform-origin: top;
     }
 
-    &::before {
-      animation-delay: var(--delay-before);
-    }
-
-    &::after {
-      right: 0;
-      animation-delay: var(--delay-after);
-    }
-
     &::before,
     &::after {
       --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -78,6 +69,15 @@ const getAnimationDelay = (index: number) => {
       background: var(--grid-overlay-color);
       transform-origin: inherit;
       animation: columns-appear 1s var(--ease-in-out-cubic) forwards;
+    }
+
+    &::before {
+      animation-delay: var(--delay-before);
+    }
+
+    &::after {
+      right: 0;
+      animation-delay: var(--delay-after);
     }
   }
 
