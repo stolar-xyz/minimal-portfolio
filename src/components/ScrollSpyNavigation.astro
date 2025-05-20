@@ -23,7 +23,7 @@ import { pageSections } from '@lib/consts';
     color: var(--text-2);
     padding-left: 1.2em;
     transition: color 0.2s ease;
-		text-transform: lowercase;
+    text-transform: lowercase;
   }
 
   nav a.active::before {
@@ -85,7 +85,7 @@ import { pageSections } from '@lib/consts';
     },
     {
       threshold: 0.75,
-    }
+    },
   );
 
   sections.forEach(section => observer.observe(section));
