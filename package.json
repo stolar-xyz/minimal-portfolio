@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "preview": "astro preview",
-    "astro": "astro",
+    "prod": "astro build && astro preview",
     "format": "prettier . \"!pnpm-lock.yaml\" --write"
   },
   "dependencies": {
