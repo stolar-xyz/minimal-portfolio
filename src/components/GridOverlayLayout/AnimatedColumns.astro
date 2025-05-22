@@ -45,8 +45,8 @@ const getAnimationDelay = (index: number) => {
 
 <style>
   .columns {
-    display: none;
     position: relative;
+    display: none;
 
     &.up {
       transform-origin: bottom;
@@ -60,13 +60,13 @@ const getAnimationDelay = (index: number) => {
     &::after {
       --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 
-      content: '';
       position: absolute;
       top: 0;
       bottom: 0;
-      opacity: 0;
       width: 1px;
+      content: '';
       background: var(--grid-overlay-color);
+      opacity: 0;
       transform-origin: inherit;
       animation: columns-appear 1s var(--ease-in-out-cubic) forwards;
     }
@@ -83,12 +83,13 @@ const getAnimationDelay = (index: number) => {
 
   @keyframes columns-appear {
     from {
-      transform: scaleY(0);
       opacity: 0;
+      transform: scaleY(0);
     }
+
     to {
-      transform: scaleY(1);
       opacity: 1;
+      transform: scaleY(1);
     }
   }
 </style>
