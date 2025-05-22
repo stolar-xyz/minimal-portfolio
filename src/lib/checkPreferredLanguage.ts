@@ -1,4 +1,4 @@
-import { isSupportedLocale, type Locale } from '@i18n/utils';
+import { isSupportedLocale, type Locale } from '@/i18n/utils';
 
 const LOCAL_STORAGE_KEY = 'language-preference-dismissed';
 

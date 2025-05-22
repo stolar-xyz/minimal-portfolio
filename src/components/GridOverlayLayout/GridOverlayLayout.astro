@@ -1,4 +1,5 @@
 ---
+/* eslint-disable astro/no-unused-css-selector */
 import AnimatedColumns, {
   type Props as AnimatedColumnsProps,
 } from './AnimatedColumns.astro';
@@ -45,7 +46,7 @@ const ANIMATED_COLUMNS: AnimatedColumnsSettings = {
     'grid-columns-lg': ANIMATED_COLUMNS['columns-lg'].totalColumns,
   }}
 >
-  @import '@styles/media.css';
+  @import '@/styles/media.css';
 
   .grid-layout,
   .grid-overlay {

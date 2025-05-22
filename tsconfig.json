@@ -5,12 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib/*": ["src/lib/*"],
-      "@i18n/*": ["src/i18n/*"],
-      "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@components/*": ["src/components/*"]
+      "@/*": ["src/*"]
     }
   }
 }
