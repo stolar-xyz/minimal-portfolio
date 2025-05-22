@@ -55,9 +55,9 @@ const ANIMATED_COLUMNS: AnimatedColumnsSettings = {
     --grid-columns: var(--grid-columns-sm);
 
     display: grid;
-    margin: 0 var(--margin-layout);
-    column-gap: var(--gutter-width);
     grid-template-columns: repeat(var(--grid-columns), 1fr);
+    column-gap: var(--gutter-width);
+    margin: 0 var(--margin-layout);
 
     @media (--tablet) {
       --gutter-width: var(--space-20);
