@@ -3,13 +3,45 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "prepare": "husky",
     "dev": "astro dev",
     "prod": "astro build && astro preview",
     "check": "astro check",
-    "format": "prettier . \"!pnpm-lock.yaml\" --write",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:styles": "stylelint \"**/*.{css,astro}\" --fix"
+    "lint": "eslint \"**/*.{astro,js,ts}\"",
+    "lint:styles": "stylelint \"**/*.{astro,css}\"",
+    "format": "prettier \"**/*.{astro,js,ts,css,md,svg,json}\" --write --log-level=warn",
+    "fix": "pnpm lint; pnpm lint:styles; pnpm format"
+  },
+  "lint-staged": {
+    "*.astro": [
+      "eslint --fix",
+      "stylelint --fix"
+    ],
+    "*.{js,ts}": "eslint --fix",
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{md,svg,json}": "prettier --write"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "scope-enum": [
+        2,
+        "always",
+        [
+          "ui",
+          "core",
+          "content"
+        ]
+      ]
+    }
+  },
+  "validate-branch-name": {
+    "pattern": "^(main|dev|preview)$|^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
   },
   "dependencies": {
     "@vercel/analytics": "1.5.0",
@@ -18,6 +50,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
     "eslint": "9.27.0",
     "eslint-import-resolver-typescript": "4.3.5",
     "eslint-plugin-astro": "1.3.1",
@@ -25,7 +59,9 @@
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-prettier": "5.4.0",
     "eslint-plugin-simple-import-sort": "12.1.1",
+    "husky": "9.1.7",
     "lightningcss": "1.30.1",
+    "lint-staged": "16.0.0",
     "postcss-html": "1.8.0",
     "prettier": "3.5.3",
     "prettier-plugin-astro": "0.14.1",
@@ -34,6 +70,7 @@
     "stylelint-config-recess-order": "6.0.0",
     "stylelint-config-standard": "38.0.0",
     "stylelint-order": "7.0.0",
-    "typescript-eslint": "8.32.1"
+    "typescript-eslint": "8.32.1",
+    "validate-branch-name": "1.3.2"
   }
 }
