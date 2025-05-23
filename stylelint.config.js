@@ -9,7 +9,6 @@ export default {
   plugins: ['stylelint-order'],
   rules: {
     'color-named': 'never',
-    'import-notation': 'string',
     'alpha-value-notation': 'number',
     'declaration-no-important': true,
     'order/order': ['custom-properties', 'declarations', 'rules', 'at-rules'],

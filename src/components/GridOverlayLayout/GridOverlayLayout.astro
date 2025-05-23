@@ -41,18 +41,16 @@ const ANIMATED_COLUMNS: AnimatedColumnsSettings = {
 
 <style
   define:vars={{
-    'grid-columns-sm': ANIMATED_COLUMNS['columns-sm'].totalColumns,
-    'grid-columns-md': ANIMATED_COLUMNS['columns-md'].totalColumns,
-    'grid-columns-lg': ANIMATED_COLUMNS['columns-lg'].totalColumns,
+    'js-grid-columns-sm': ANIMATED_COLUMNS['columns-sm'].totalColumns,
+    'js-grid-columns-md': ANIMATED_COLUMNS['columns-md'].totalColumns,
+    'js-grid-columns-lg': ANIMATED_COLUMNS['columns-lg'].totalColumns,
   }}
 >
-  @import '@/styles/media.css';
-
   .grid-layout,
   .grid-overlay {
     --gutter-width: var(--space-16);
     --margin-layout: var(--space-32);
-    --grid-columns: var(--grid-columns-sm);
+    --grid-columns: var(--js-grid-columns-sm);
 
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
@@ -62,11 +60,11 @@ const ANIMATED_COLUMNS: AnimatedColumnsSettings = {
     @media (--tablet) {
       --gutter-width: var(--space-20);
       --margin-layout: var(--space-40);
-      --grid-columns: var(--grid-columns-md);
+      --grid-columns: var(--js-grid-columns-md);
     }
 
     @media (--wide-tablet) {
-      --grid-columns: var(--grid-columns-lg);
+      --grid-columns: var(--js-grid-columns-lg);
     }
   }
 

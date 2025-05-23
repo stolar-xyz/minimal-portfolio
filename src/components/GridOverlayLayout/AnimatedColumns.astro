@@ -35,8 +35,8 @@ const getAnimationDelay = (index: number) => {
       ]}
       style={{
         gridColumn: getGridColumn(i + 1),
-        '--delay-before': getAnimationDelay(i),
-        '--delay-after': getAnimationDelay(i + 1),
+        '--js-delay-before': getAnimationDelay(i),
+        '--js-delay-after': getAnimationDelay(i + 1),
       }}
       {...rest}
     />
@@ -72,12 +72,12 @@ const getAnimationDelay = (index: number) => {
     }
 
     &::before {
-      animation-delay: var(--delay-before);
+      animation-delay: var(--js-delay-before);
     }
 
     &::after {
       right: 0;
-      animation-delay: var(--delay-after);
+      animation-delay: var(--js-delay-after);
     }
   }
 

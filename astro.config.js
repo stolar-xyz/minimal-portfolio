@@ -24,17 +24,4 @@ export default defineConfig({
     locales: ['en', 'pl', 'uk'],
     defaultLocale: 'en',
   },
-  vite: {
-    css: {
-      transformer: 'lightningcss',
-      lightningcss: {
-        drafts: {
-          customMedia: true,
-        },
-      },
-    },
-    build: {
-      cssMinify: 'lightningcss',
-    },
-  },
 });
