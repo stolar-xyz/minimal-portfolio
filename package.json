@@ -41,7 +41,7 @@
     }
   },
   "validate-branch-name": {
-    "pattern": "^main|^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
+    "pattern": "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
   },
   "browserslist": [
     "defaults"
