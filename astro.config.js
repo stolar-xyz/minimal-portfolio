@@ -1,27 +1,31 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 export default defineConfig({
-  experimental: {
-    fonts: [
-      {
-        provider: 'local',
-        name: 'Geist Mono',
-        fallbacks: ['monospace'],
-        optimizedFallbacks: false,
-        cssVariable: '--font-geist-mono',
-        variants: [
-          {
-            weight: 400,
-            style: 'normal',
-            src: ['./src/assets/fonts/GeistMono-Regular.woff2'],
-          },
-        ],
-      },
-    ],
-  },
   i18n: {
     locales: ['en', 'pl', 'uk'],
     defaultLocale: 'en',
+  },
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.fontsource(),
+        name: 'Geist',
+        weights: ['100 900'],
+        styles: ['normal'],
+        subsets: ['latin-ext'],
+        fallbacks: ['sans-serif'],
+        cssVariable: '--font-geist',
+      },
+      {
+        provider: fontProviders.fontsource(),
+        name: 'Geist Mono',
+        weights: [400],
+        styles: ['normal'],
+        subsets: ['latin-ext'],
+        fallbacks: ['monospace'],
+        cssVariable: '--font-geist-mono',
+      },
+    ],
   },
 });
