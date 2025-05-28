@@ -1,0 +1,5 @@
+@utility animation-delay-* {
+  /* stylelint-disable-next-line prettier/prettier */
+  animation-delay: --value([*]);
+  animation-delay: calc(--value(integer) * 1ms);
+}

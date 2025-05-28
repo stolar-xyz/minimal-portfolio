@@ -1,0 +1,14 @@
+@layer components {
+  .animated-columns {
+    @apply relative;
+
+    &::after {
+      @apply right-0;
+    }
+
+    &::before,
+    &::after {
+      @apply animate-fade-in-scale absolute top-0 bottom-0 w-px origin-[inherit] bg-gray-500 opacity-0 content-[''];
+    }
+  }
+}
