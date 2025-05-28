@@ -1,10 +1,14 @@
 // @ts-check
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { fileURLToPath } from 'node:url';
+import { includeIgnoreFile } from '@eslint/compat';
+import { defineConfig } from 'eslint/config';
 import astro from 'eslint-plugin-astro';
 import importX from 'eslint-plugin-import-x';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import importSort from 'eslint-plugin-simple-import-sort';
 import typescript from 'typescript-eslint';
+
+const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
 
 export default defineConfig([
   // @ts-expect-error types are not compatible
@@ -32,7 +36,6 @@ export default defineConfig([
       'import-x/core-modules': ['astro:assets'],
     },
     rules: {
-      'astro/no-unused-css-selector': 'error',
       'import-x/no-named-as-default-member': 'off',
       'import-x/newline-after-import': ['error', { count: 1 }],
       'import-x/consistent-type-specifier-style': ['error', 'prefer-inline'],
@@ -40,10 +43,10 @@ export default defineConfig([
       'import-sort/imports': [
         'error',
         {
-          groups: [['^astro', '^@?\\w', '^@/', '^\\.', '']],
+          groups: [['^node', '^astro', '^@?\\w', '^@/', '^\\.', '\\u0000']],
         },
       ],
     },
   },
-  globalIgnores(['dist/', '.astro/']),
+  includeIgnoreFile(gitignorePath),
 ]);

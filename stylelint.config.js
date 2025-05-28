@@ -1,16 +1,26 @@
 // @ts-check
 /** @type {import('stylelint').Config} */
 export default {
-  extends: [
-    'stylelint-config-html/astro',
-    'stylelint-config-standard',
-    'stylelint-config-recess-order',
-  ],
-  plugins: ['stylelint-order'],
+  extends: ['stylelint-config-standard', 'stylelint-prettier/recommended'],
   rules: {
-    'color-named': 'never',
-    'alpha-value-notation': 'number',
-    'declaration-no-important': true,
-    'order/order': ['custom-properties', 'declarations', 'rules', 'at-rules'],
+    'import-notation': 'string',
+    'at-rule-no-deprecated': [true, { ignoreAtRules: ['apply'] }],
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'apply',
+          'theme',
+          'layer',
+          'utility',
+          'variant',
+          'custom-variant',
+          'reference',
+          'source',
+          'plugin',
+          'config',
+        ],
+      },
+    ],
   },
 };
