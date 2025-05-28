@@ -35,7 +35,7 @@
     }
   },
   "validate-branch-name": {
-    "pattern": "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
+    "pattern": "^preview|^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.1.7",
