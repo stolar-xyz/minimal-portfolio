@@ -1,32 +1,14 @@
 ---
-import { Font } from 'astro:assets';
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
 import GridOverlayLayout from '@/components/GridOverlayLayout';
-import '@/styles/global.css';
-import '@/styles/theme.css';
-import '@/styles/variables.css';
+import RootLayout from './RootLayout.astro';
 ---
 
-<!doctype html>
-<html lang={Astro.currentLocale}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
-    <Font cssVariable="--font-geist-mono" preload />
-    <Analytics />
-    <SpeedInsights />
-  </head>
-  <body>
-    <GridOverlayLayout>
-      <slot />
-    </GridOverlayLayout>
-    <div id="language-toast-container"></div>
-  </body>
-</html>
+<RootLayout>
+  <GridOverlayLayout>
+    <slot />
+  </GridOverlayLayout>
+  <div id="language-toast-container"></div>
+</RootLayout>
 
 <script>
   import { getTranslation } from '@/i18n/utils';
