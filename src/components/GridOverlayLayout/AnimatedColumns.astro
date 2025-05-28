@@ -2,23 +2,22 @@
 export type Props = {
   direction: 'up' | 'down';
   animatedColumns: number;
-  totalColumns: number;
+  columns: number;
   className?: string;
 };
 
-const { direction, animatedColumns, totalColumns, className, ...rest } =
-  Astro.props;
+const { direction, animatedColumns, columns, className } = Astro.props;
 
 const DELAY = 0.25;
 
 const getGridColumn = (index: number) =>
-  Math.floor((totalColumns - animatedColumns) / 2) + index;
+  Math.floor((columns - animatedColumns) / 2) + index;
 
 const getAnimationDelay = (index: number) => {
   const order = Math.abs(index - animatedColumns / 2);
-  const animationDelay = (order * DELAY).toFixed(3);
+  const animationDelay = Math.round(order * DELAY * 1000);
 
-  return `${animationDelay}s`;
+  return `${animationDelay}ms`;
 };
 ---
 
@@ -26,70 +25,18 @@ const getAnimationDelay = (index: number) => {
   Array.from({ length: animatedColumns }).map((_, i) => (
     <div
       class:list={[
-        'columns',
         className,
+        'animated-columns before:animation-delay-(--delay-before) after:animation-delay-(--delay-after)',
         {
-          up: direction === 'up',
-          down: direction === 'down',
+          'origin-top': direction === 'down',
+          'origin-bottom': direction === 'up',
         },
       ]}
       style={{
         gridColumn: getGridColumn(i + 1),
-        '--js-delay-before': getAnimationDelay(i),
-        '--js-delay-after': getAnimationDelay(i + 1),
+        '--delay-before': getAnimationDelay(i),
+        '--delay-after': getAnimationDelay(i + 1),
       }}
-      {...rest}
     />
   ))
 }
-
-<style>
-  .columns {
-    position: relative;
-    display: none;
-
-    &.up {
-      transform-origin: bottom;
-    }
-
-    &.down {
-      transform-origin: top;
-    }
-
-    &::before,
-    &::after {
-      --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      content: '';
-      background: var(--grid-overlay-color);
-      opacity: 0;
-      transform-origin: inherit;
-      animation: columns-appear 1s var(--ease-in-out-cubic) forwards;
-    }
-
-    &::before {
-      animation-delay: var(--js-delay-before);
-    }
-
-    &::after {
-      right: 0;
-      animation-delay: var(--js-delay-after);
-    }
-  }
-
-  @keyframes columns-appear {
-    from {
-      opacity: 0;
-      transform: scaleY(0);
-    }
-
-    to {
-      opacity: 1;
-      transform: scaleY(1);
-    }
-  }
-</style>
