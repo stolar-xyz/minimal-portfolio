@@ -1,6 +1,6 @@
 @layer components {
   .animated-columns {
-    @apply relative;
+    @apply relative hidden;
 
     &::after {
       @apply right-0;
