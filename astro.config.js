@@ -4,6 +4,7 @@ import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  prefetch: true,
   compressHTML: false,
   i18n: {
     locales: ['en', 'pl', 'uk'],

@@ -12,7 +12,9 @@ const supportedLanguages = getLocalesNavigation();
         {currentLocale === label ? (
           <span class="active">{label}</span>
         ) : (
-          <a href={path}>{label}</a>
+          <a href={path} data-astro-prefetch>
+            {label}
+          </a>
         )}
       </>
     ))
