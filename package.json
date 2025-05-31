@@ -38,6 +38,7 @@
     "pattern": "^preview|^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)/(?=.*[a-z])[a-z0-9-]+$"
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.4.0",
     "@playform/compress": "0.1.9",
     "@tailwindcss/vite": "4.1.7",
     "@vercel/analytics": "1.5.0",
