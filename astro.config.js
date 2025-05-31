@@ -1,14 +1,31 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  compressHTML: false,
   i18n: {
     locales: ['en', 'pl', 'uk'],
     defaultLocale: 'en',
+  },
+  integrations: [
+    compress({
+      CSS: false,
+      JavaScript: false,
+      HTML: {
+        'html-minifier-terser': {
+          minifyJS: {
+            mangle: {
+              toplevel: true,
+            },
+          },
+        },
+      },
+    }),
+  ],
+  vite: {
+    plugins: [tailwindcss()],
   },
   experimental: {
     fonts: [
