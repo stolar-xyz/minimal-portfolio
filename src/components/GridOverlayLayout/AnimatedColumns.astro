@@ -10,8 +10,8 @@ const { direction, animatedColumns, columns, className } = Astro.props;
 
 const DELAY = 0.25;
 
-const getGridColumn = (index: number) =>
-  Math.floor((columns - animatedColumns) / 2) + index;
+const getInitialGridColumn = () =>
+  Math.floor((columns - animatedColumns) / 2) + 1;
 
 const getAnimationDelay = (index: number) => {
   const order = Math.abs(index - animatedColumns / 2);
@@ -33,7 +33,7 @@ const getAnimationDelay = (index: number) => {
         },
       ]}
       style={{
-        gridColumn: getGridColumn(i + 1),
+        gridColumn: i === 0 && getInitialGridColumn(),
         '--delay-before': getAnimationDelay(i),
         '--delay-after': getAnimationDelay(i + 1),
       }}
