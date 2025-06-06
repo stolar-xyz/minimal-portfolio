@@ -1,14 +1,6 @@
-import { type Translation } from '../types';
+import { type Translations } from '../types';
 
-export const en: Translation = {
-  home: {
-    title: 'Home',
-    description: 'About the home page',
-  },
-  navigation: {
-    home: 'Home',
-    about: 'About',
-    projects: 'Projects',
-    contact: 'Contact',
-  },
-};
+export default {
+  description:
+    'I specialize in React, TypeScript and accessibility. I build fast, thoughtful web applications.',
+} satisfies Translations;
