@@ -1,12 +1,11 @@
-export type Translation = {
-  home: {
-    title: string;
-    description: string;
-  };
-  navigation: {
-    home: string;
-    about: string;
-    projects: string;
-    contact: string;
+export type Translations = {
+  description: string;
+};
+
+export type ClientTranslations = {
+  toast: {
+    close: string;
+    changeLanguage: string;
+    availableInYourLanguage: string;
   };
 };

@@ -9,7 +9,7 @@ export default defineConfig({
   compressHTML: false,
   site: 'https://stolarek.dev',
   i18n: {
-    locales: ['en', 'pl', 'uk'],
+    locales: ['en', 'pl'],
     defaultLocale: 'en',
   },
   integrations: [
@@ -19,7 +19,6 @@ export default defineConfig({
         locales: {
           en: 'en',
           pl: 'pl',
-          uk: 'uk',
         },
       },
     }),
@@ -39,6 +38,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    esbuild: {
+      legalComments: 'none',
+    },
   },
   experimental: {
     fonts: [

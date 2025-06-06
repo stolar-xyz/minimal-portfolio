@@ -1,14 +1,6 @@
-import { type Translation } from '../types';
+import { type Translations } from '../types';
 
-export const pl: Translation = {
-  home: {
-    title: 'Strona główna',
-    description: 'O stronie głównej',
-  },
-  navigation: {
-    home: 'Strona główna',
-    about: 'O mnie',
-    projects: 'Projekty',
-    contact: 'Kontakt',
-  },
-};
+export default {
+  description:
+    'Specjalizuję się w React, TypeScript i dostępności. Buduję szybkie, przemyślane aplikacje webowe.',
+} satisfies Translations;
