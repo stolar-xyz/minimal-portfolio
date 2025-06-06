@@ -3,14 +3,12 @@ import DownloadButton from '@/components/DownloadButton.astro';
 import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
 import ScrollProgress from '@/components/ScrollProgress.astro';
 import ScrollSpyNavigation from '@/components/ScrollSpyNavigation.astro';
-import ThemeToggler from '@/components/ThemeToggler.astro';
 import Layout from '@/layouts/Layout.astro';
 import { pageSections } from '@/lib/consts';
 ---
 
 <Layout>
   <div>
-    <ThemeToggler />
     <DownloadButton fileName="CV-pl.pdf" />
     <DownloadButton fileName="CV-en.pdf" />
     <LanguageSwitcher />
