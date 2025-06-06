@@ -8,7 +8,17 @@
 
     &::before,
     &::after {
-      @apply animate-fade-in-scale absolute top-0 bottom-0 w-px origin-[inherit] bg-gray-500 opacity-0 content-[''];
+      @apply animate-scale-in absolute top-0 bottom-0 w-px origin-[inherit] bg-gray-500 opacity-0 content-[''];
     }
+  }
+}
+
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+
+  svg {
+    @apply stroke-1 transition-[stroke-width] hover:stroke-[1.5px] active:stroke-1;
   }
 }
