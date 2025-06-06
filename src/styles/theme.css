@@ -1,23 +1,28 @@
+@theme inline {
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+}
+
 @theme {
   /* stylelint-disable-next-line custom-property-pattern */
   --color-*: initial;
   --color-gray-100: #fafafa;
-  --color-gray-200: #dadada;
+  --color-gray-150: #ececec;
+  --color-gray-200: #dedede;
   --color-gray-300: #b8b8b8;
   --color-gray-400: #909090;
   --color-gray-500: #7a7a7a;
   --color-gray-600: #5e5e5e;
   --color-gray-700: #4c4c4c;
   --color-gray-800: #2f2f2f;
-  --color-gray-900: #202020;
-  --color-gray-950: #141414;
+  --color-gray-900: #1f1f1f;
+  --color-gray-950: #0e0e0e;
   --font-serif: initial;
-  --font-sans: var(--font-geist);
-  --font-mono: var(--font-geist-mono);
-  --animate-fade-in-scale: fade-in-scale 1s cubic-bezier(0.645, 0.045, 0.355, 1)
-    forwards;
+  --animate-scale-in: scale-in 1s var(--ease-in-out) forwards;
+  --animate-slide-in-up: slide-in-up 0.4s var(--ease-in-out) forwards;
+  --animate-slide-out-down: slide-out-down 0.3s var(--ease-in-out) forwards;
 
-  @keyframes fade-in-scale {
+  @keyframes scale-in {
     0% {
       opacity: 0;
       transform: scale(0);
@@ -26,6 +31,30 @@
     100% {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  @keyframes slide-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-down {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(100%);
     }
   }
 }
