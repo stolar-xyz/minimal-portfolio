@@ -1,28 +1,14 @@
 ---
 import GridOverlayLayout from '@/components/GridOverlayLayout';
+import LanguageSwitchToast from '@/components/LanguageSwitchToast';
+import ThemeToggler from '@/components/ThemeToggler.astro';
 import RootLayout from './RootLayout.astro';
 ---
 
 <RootLayout>
   <GridOverlayLayout>
+    <ThemeToggler />
     <slot />
   </GridOverlayLayout>
-  <div id="language-toast-container"></div>
+  <LanguageSwitchToast />
 </RootLayout>
-
-<script>
-  import { getTranslation } from '@/i18n/utils';
-  import { checkPreferredLanguage } from '@/lib/checkPreferredLanguage';
-
-  const currentLocale = document.documentElement.lang;
-  const preferredLanguage = checkPreferredLanguage(currentLocale);
-
-  if (preferredLanguage) {
-    const translation = getTranslation(preferredLanguage);
-    const toastContainer = document.getElementById('language-toast-container');
-
-    if (toastContainer) {
-      toastContainer.innerHTML = translation.navigation.home;
-    }
-  }
-</script>
