@@ -3,3 +3,27 @@
   animation-delay: --value([*]);
   animation-delay: calc(--value(integer) * 1ms);
 }
+
+@utility bg-1 {
+  @apply bg-gray-100 dark:bg-gray-950;
+}
+
+@utility bg-2 {
+  @apply bg-gray-400 dark:bg-gray-700;
+}
+
+@utility bg-3 {
+  @apply bg-gray-700 dark:bg-gray-400;
+}
+
+@utility text-1 {
+  @apply text-gray-950 dark:text-gray-100;
+}
+
+@utility text-2 {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+@utility text-3 {
+  @apply text-gray-300 dark:text-gray-600;
+}
