@@ -1,2 +1,2 @@
 export * from './consts';
-export { safeLocalStorage } from './safeLocalStorage';
+export * from './getIdFromLabel';
