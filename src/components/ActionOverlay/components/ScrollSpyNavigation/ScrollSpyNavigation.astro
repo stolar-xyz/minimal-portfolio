@@ -1,0 +1,107 @@
+---
+import { getTranslation } from '@/i18n';
+import { getIdFromLabel } from '@/lib';
+import { MIN_XL_BREAKPOINT } from '@/lib/consts';
+import { ACTIVE_CLASSES } from './consts';
+
+const { sections } = await getTranslation(Astro.currentLocale);
+---
+
+<nav
+  id="navigation"
+  aria-hidden="true"
+  class="transition-[opacity,visibility] duration-300 aria-hidden:invisible aria-hidden:opacity-0 xl:transition-none"
+>
+  <ul
+    class="flex flex-col items-start gap-y-3 font-mono text-xl lowercase sm:gap-y-4 sm:text-3xl xl:gap-y-2 xl:text-base"
+  >
+    {
+      sections.map(({ title }) => (
+        <li class="text-states">
+          <a
+            data-nav-link
+            href={getIdFromLabel(title, '#')}
+            class="flex gap-x-3 sm:gap-x-4 xl:gap-x-2"
+          >
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script is:inline define:vars={{ MIN_XL_BREAKPOINT, ACTIVE_CLASSES }}>
+  if (window.matchMedia(MIN_XL_BREAKPOINT).matches) {
+    document.getElementById('navigation')?.setAttribute('aria-hidden', 'false');
+  }
+
+  const activeLink = [...document.querySelectorAll('[data-nav-link]')].find(
+    link => location.hash === link.getAttribute('href') || location.hash === '',
+  );
+
+  activeLink?.setAttribute('aria-current', 'true');
+  activeLink?.classList.add(...ACTIVE_CLASSES);
+</script>
+
+<script>
+  import { ACTIVE_CLASSES } from './consts';
+
+  const INTERSECTION_THRESHOLD = 0.75;
+
+  const navLinks =
+    document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+
+  const getLinkSectionId = (link: HTMLAnchorElement): string =>
+    link.getAttribute('href')?.substring(1) ?? '';
+
+  const setActiveLink = (activeId: string) => {
+    navLinks.forEach(link => {
+      const linkTarget = getLinkSectionId(link);
+      const isActive = linkTarget === activeId;
+
+      link.toggleAttribute('aria-current', isActive);
+      ACTIVE_CLASSES.forEach(activeClass => {
+        link.classList.toggle(activeClass, isActive);
+      });
+    });
+  };
+
+  let currentHash = location.hash.replace('#', '');
+  let targetHash: string | null = null;
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const id = getLinkSectionId(link);
+      targetHash = id;
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          setActiveLink(id);
+
+          const isTargetHash = targetHash === null || targetHash === id;
+          const isCurrentHash = currentHash === id;
+
+          if (isTargetHash && !isCurrentHash) {
+            history.replaceState(null, '', `#${id}`);
+            currentHash = id;
+            targetHash = null;
+          }
+        }
+      });
+    },
+    {
+      threshold: INTERSECTION_THRESHOLD,
+    },
+  );
+
+  document
+    .querySelectorAll('section[id]')
+    .forEach(section => observer.observe(section));
+</script>

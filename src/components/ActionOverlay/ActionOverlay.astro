@@ -1,0 +1,27 @@
+---
+import HamburgerMenu from './components/HamburgerMenu.astro';
+import LanguageSwitcher from './components/LanguageSwitcher.astro';
+import OpenToCollaborationStatus from './components/OpenToCollaborationStatus.astro';
+import ScrollProgress from './components/ScrollProgress.astro';
+import ScrollSpyNavigation from './components/ScrollSpyNavigation';
+import TextLogo from './components/TextLogo.astro';
+import ThemeToggler from './components/ThemeToggler.astro';
+---
+
+<div
+  class="pointer-events-none fixed inset-6 z-10 grid grid-cols-2 sm:inset-10 [&>div>*]:pointer-events-auto [&>div>*]:select-none"
+>
+  <div class="grid content-between justify-items-start">
+    <TextLogo />
+    <ScrollSpyNavigation />
+    <div class="grid gap-4">
+      <LanguageSwitcher />
+      <ThemeToggler />
+    </div>
+  </div>
+  <div class="flex justify-end gap-3 self-start">
+    <OpenToCollaborationStatus />
+    <HamburgerMenu />
+    <ScrollProgress />
+  </div>
+</div>

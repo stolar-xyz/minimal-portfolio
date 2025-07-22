@@ -1,0 +1,61 @@
+---
+import CrossIcon from '@/assets/icons/cross.svg';
+import MenuIcon from '@/assets/icons/menu.svg';
+---
+
+<button
+  id="menu-toggle"
+  class="group relative xl:hidden"
+  aria-label="Menu"
+  aria-expanded="false"
+  aria-controls="navigation"
+>
+  <MenuIcon class="absolute group-aria-expanded:opacity-0" />
+  <CrossIcon class="not-group-aria-expanded:opacity-0" />
+</button>
+
+<script>
+  import { MIN_XL_BREAKPOINT } from '@/lib/consts';
+
+  let isOpen = false;
+  const menuToggle = document.getElementById('menu-toggle');
+  const navigation = document.getElementById('navigation');
+  const gridLayout = document.getElementById('grid-layout');
+
+  const setMenuState = () => {
+    menuToggle?.setAttribute('aria-expanded', String(isOpen));
+    gridLayout?.setAttribute('aria-hidden', String(isOpen));
+    navigation?.setAttribute('aria-hidden', String(!isOpen));
+    document.documentElement.classList.toggle('overflow-y-hidden', isOpen);
+  };
+
+  const onToggle = () => {
+    isOpen = !isOpen;
+    setMenuState();
+  };
+
+  menuToggle?.addEventListener('click', onToggle);
+  document.addEventListener('click', ({ target }) => {
+    if (isOpen && target instanceof Node && !menuToggle?.contains(target))
+      onToggle();
+  });
+
+  document.addEventListener('keydown', ({ key }) => {
+    if (key === 'Escape' && isOpen) {
+      onToggle();
+    }
+  });
+
+  window
+    .matchMedia(MIN_XL_BREAKPOINT)
+    .addEventListener('change', ({ matches }) => {
+      if (matches) {
+        isOpen = false;
+        gridLayout?.setAttribute('aria-hidden', 'false');
+        navigation?.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.remove('overflow-y-hidden');
+      } else {
+        setMenuState();
+      }
+    });
+</script>

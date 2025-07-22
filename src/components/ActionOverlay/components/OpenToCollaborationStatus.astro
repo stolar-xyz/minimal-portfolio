@@ -1,0 +1,11 @@
+---
+import { getTranslation } from '@/i18n';
+
+const { openToCollaboration } = await getTranslation(Astro.currentLocale);
+---
+
+<span
+  class="bg-brand-3-before bg-brand-3-after relative flex items-center gap-x-3 font-mono text-[10px] before:aspect-square before:w-2 before:rounded-full after:absolute after:-left-0.5 after:aspect-square after:w-3 after:animate-ping after:rounded-full sm:text-sm"
+>
+  {openToCollaboration}
+</span>

@@ -13,7 +13,7 @@ const { gridSizes, class: className, ...props } = Astro.props;
 <div
   class:list={[
     className,
-    'mx-8 grid grid-cols-[repeat(var(--columns),1fr)] gap-x-4 sm:mx-10 sm:grid-cols-[repeat(var(--sm-columns),1fr)] sm:gap-x-5 xl:grid-cols-[repeat(var(--xl-columns),1fr)]',
+    'mx-6 grid grid-cols-[repeat(var(--columns),1fr)] gap-x-4 sm:mx-10 sm:grid-cols-[repeat(var(--sm-columns),1fr)] sm:gap-x-5 xl:grid-cols-[repeat(var(--xl-columns),1fr)]',
   ]}
   style={{
     '--columns': gridSizes.base,
