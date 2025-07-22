@@ -1,10 +1,11 @@
+/* stylelint-disable custom-property-pattern */
+
 @theme inline {
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
 }
 
 @theme {
-  /* stylelint-disable-next-line custom-property-pattern */
   --color-*: initial;
   --color-gray-100: #fafafa;
   --color-gray-150: #ececec;
@@ -12,15 +13,21 @@
   --color-gray-300: #b8b8b8;
   --color-gray-400: #909090;
   --color-gray-500: #7a7a7a;
-  --color-gray-600: #5e5e5e;
+  --color-gray-600: #6b6b6b;
   --color-gray-700: #4c4c4c;
-  --color-gray-800: #2f2f2f;
-  --color-gray-900: #1f1f1f;
-  --color-gray-950: #0e0e0e;
+  --color-gray-800: #2c2c2c;
+  --color-gray-900: #1b1b1b;
+  --color-gray-950: #080808;
+  --color-orange-100: #ffb362;
+  --color-orange-200: #f59c3c;
+  --color-orange-300: #f39028;
+  --color-orange-400: #e47e12;
+  --color-orange-500: #cf6f09;
+  --color-orange-600: #c06505;
   --font-serif: initial;
   --animate-scale-in: scale-in 1s var(--ease-in-out) forwards;
-  --animate-slide-in-up: slide-in-up 0.4s var(--ease-in-out) forwards;
-  --animate-slide-out-down: slide-out-down 0.3s var(--ease-in-out) forwards;
+  --animate-slide-in-up: slide-in-up 400ms var(--ease-in-out) forwards;
+  --animate-slide-out-down: slide-out-down 300ms var(--ease-in-out) forwards;
 
   @keyframes scale-in {
     0% {
