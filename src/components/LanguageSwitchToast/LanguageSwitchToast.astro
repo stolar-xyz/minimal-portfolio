@@ -5,15 +5,15 @@ import CrossIcon from '@/assets/icons/cross.svg';
 <div id="toast-container" class="hidden"></div>
 <template id="toast-template">
   <div
-    class="bg-1 fixed bottom-0 w-full rounded-xs border-t border-gray-600 px-6 py-9 sm:right-10 sm:bottom-11 sm:w-[333px] sm:border sm:p-4 xl:bottom-10 xl:w-[290px] xl:rounded-sm xl:p-3"
+    class="bg-1 fixed bottom-0 z-10 w-full rounded-xs border-t border-gray-600 px-6 py-9 sm:right-10 sm:bottom-11 sm:w-[333px] sm:border sm:p-4 xl:bottom-10 xl:w-[290px] xl:rounded-sm xl:p-3"
   >
     <div
       class="relative grid justify-items-start gap-y-3 py-2 text-sm tracking-widest sm:gap-y-2 xl:text-xs"
     >
       {/* eslint-disable-next-line */}
-      <a data-link class="underline underline-offset-2"></a>
-      <span data-description class="text-2"></span>
-      <button data-close-button class="absolute -top-1 -right-1">
+      <a class="underline underline-offset-2"></a>
+      <p class="text-2"></p>
+      <button class="absolute -top-1 -right-1">
         <CrossIcon class="h-8 w-8 p-1 sm:h-6 sm:w-6" />
       </button>
     </div>
@@ -31,58 +31,48 @@ import CrossIcon from '@/assets/icons/cross.svg';
 
   const currentLanguage = document.documentElement.lang;
   const userBrowserLanguage = getUserBrowserLanguage();
-
   const shouldShowToast =
     !isDismissed() &&
     currentLanguage !== userBrowserLanguage &&
     isSupportedLocale(userBrowserLanguage);
 
   if (shouldShowToast) {
-    const containerElement = document.getElementById('toast-container');
-    const templateElement = document.getElementById(
+    const container = document.getElementById('toast-container');
+    const template = document.getElementById(
       'toast-template',
     ) as HTMLTemplateElement | null;
 
-    if (containerElement && templateElement) {
-      containerElement.appendChild(templateElement.content.cloneNode(true));
+    if (container && template) {
+      container.appendChild(template.content.cloneNode(true));
 
-      const toastElement = containerElement.firstElementChild;
-      const linkElement =
-        containerElement.querySelector<HTMLAnchorElement>('[data-link]');
-      const descriptionElement =
-        containerElement.querySelector('[data-description]');
-      const closeButtonElement = containerElement.querySelector(
-        '[data-close-button]',
-      );
+      const toastWrapper = container.firstElementChild;
+      const link = toastWrapper?.querySelector('a');
+      const description = toastWrapper?.querySelector('p');
+      const closeButton = toastWrapper?.querySelector('button');
 
-      if (
-        toastElement &&
-        linkElement &&
-        descriptionElement &&
-        closeButtonElement
-      ) {
+      if (toastWrapper && link && description && closeButton) {
         const { toast } = await getTranslation(userBrowserLanguage, true);
         const localePath = getLocalePath(userBrowserLanguage);
 
-        linkElement.href = localePath;
-        linkElement.textContent = toast.changeLanguage;
-        linkElement.addEventListener('mouseover', () => prefetch(localePath));
+        link.href = localePath;
+        link.textContent = toast.changeLanguage;
+        link.addEventListener('mouseover', () => prefetch(localePath));
 
-        descriptionElement.textContent = toast.availableInYourLanguage;
+        description.textContent = toast.availableInYourLanguage;
 
-        closeButtonElement.ariaLabel = toast.close;
-        closeButtonElement.addEventListener('click', () => {
+        closeButton.ariaLabel = toast.close;
+        closeButton.addEventListener('click', () => {
           dismissLanguageSuggestion();
-          toastElement.classList.add('animate-slide-out-down');
+          toastWrapper.classList.add('animate-slide-out-down');
 
           setTimeout(() => {
-            containerElement.remove();
+            container.remove();
           }, 600);
         });
 
         setTimeout(() => {
-          containerElement.classList.remove('hidden');
-          toastElement.classList.add('animate-slide-in-up');
+          container.classList.remove('hidden');
+          toastWrapper.classList.add('animate-slide-in-up');
         }, 3000);
       }
     }

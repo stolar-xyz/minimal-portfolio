@@ -1,8 +1,8 @@
 ---
 import AnimatedColumns, {
   type Props as AnimatedColumnsProps,
-} from './AnimatedColumns.astro';
-import GridLayout, { type GridSizes } from './GridLayout.astro';
+} from './components/AnimatedColumns.astro';
+import GridLayout, { type GridSizes } from './components/GridLayout.astro';
 
 const GRID_SIZES: GridSizes = {
   base: 2,
@@ -29,13 +29,17 @@ const ANIMATED_COLUMNS: Omit<AnimatedColumnsProps, 'direction'>[] = [
 ];
 ---
 
-<GridLayout gridSizes={GRID_SIZES}>
+<GridLayout
+  id="grid-layout"
+  gridSizes={GRID_SIZES}
+  class="transition-[opacity,visibility] duration-300 aria-hidden:invisible aria-hidden:opacity-0"
+>
   <slot />
 </GridLayout>
 <GridLayout
   aria-hidden="true"
   gridSizes={GRID_SIZES}
-  class="pointer-events-none fixed inset-0"
+  class="pointer-events-none fixed inset-0 -z-10"
 >
   {
     ANIMATED_COLUMNS.map(animatedColumn => (

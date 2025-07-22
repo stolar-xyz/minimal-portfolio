@@ -1,0 +1,49 @@
+---
+import MoonIcon from '@/assets/icons/moon.svg';
+import SunIcon from '@/assets/icons/sun.svg';
+import { getTranslation } from '@/i18n';
+
+const { switchTheme } = await getTranslation(Astro.currentLocale);
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="relative"
+  aria-label={switchTheme}
+>
+  <SunIcon
+    class="absolute rotate-0 opacity-100 transition-[stroke-width,rotate,opacity] dark:rotate-90 dark:opacity-0"
+  />
+  <MoonIcon
+    class="-rotate-90 opacity-0 transition-[stroke-width,rotate,opacity] dark:rotate-0 dark:opacity-100"
+  />
+</button>
+
+<script is:inline>
+  const LIGHT_THEME = 'light';
+  const DARK_THEME = 'dark';
+  const THEME_KEY = 'theme';
+
+  const theme =
+    localStorage.getItem(THEME_KEY) ||
+    (matchMedia('(prefers-color-scheme: dark)').matches
+      ? DARK_THEME
+      : LIGHT_THEME);
+
+  const setTheme = theme => {
+    document.documentElement.classList.toggle(DARK_THEME, theme === DARK_THEME);
+    localStorage.setItem(THEME_KEY, theme);
+  };
+
+  setTheme(theme);
+  document
+    ?.getElementById('theme-toggle')
+    ?.addEventListener('click', () =>
+      setTheme(
+        document.documentElement.classList.contains(DARK_THEME)
+          ? LIGHT_THEME
+          : DARK_THEME,
+      ),
+    );
+</script>

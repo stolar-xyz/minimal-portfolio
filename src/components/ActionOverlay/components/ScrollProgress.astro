@@ -1,0 +1,44 @@
+---
+import { MIN_XL_BREAKPOINT } from '@/lib/consts';
+---
+
+<div
+  class="bg-2 fixed top-1/2 hidden h-[50vh] w-px -translate-y-1/2 xl:block"
+  aria-hidden="true"
+>
+  <div class="bg-3 h-full" id="scroll-progress"></div>
+</div>
+
+<script is:inline define:vars={{ MIN_XL_BREAKPOINT }}>
+  const scrollProgress = document.getElementById('scroll-progress');
+
+  function updateScroll() {
+    if (scrollProgress) {
+      const maxScroll = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight,
+        1,
+      );
+
+      const ratio = Math.min(
+        Math.max(document.documentElement.scrollTop / maxScroll, 0),
+        1,
+      );
+
+      scrollProgress.style.transform = `scaleY(${ratio})`;
+    }
+  }
+
+  function handleBreakpointChange({ matches }) {
+    if (matches) {
+      updateScroll();
+      window.addEventListener('scroll', updateScroll, { passive: true });
+    } else {
+      window.removeEventListener('scroll', updateScroll);
+    }
+  }
+
+  const mediaQuery = window.matchMedia(MIN_XL_BREAKPOINT);
+  handleBreakpointChange(mediaQuery);
+
+  mediaQuery.addEventListener('change', handleBreakpointChange);
+</script>
