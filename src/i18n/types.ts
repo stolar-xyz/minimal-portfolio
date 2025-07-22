@@ -1,5 +1,8 @@
 export type Translations = {
-  description: string;
+  switchTheme: string;
+  switchLanguage: string;
+  openToCollaboration: string;
+  sections: { title: string; content: string }[];
 };
 
 export type ClientTranslations = {
