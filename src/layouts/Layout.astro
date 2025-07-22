@@ -1,14 +1,14 @@
 ---
-import GridOverlayLayout from '@/components/GridOverlayLayout';
+import ActionOverlay from '@/components/ActionOverlay';
+import GridOverlay from '@/components/GridOverlay';
 import LanguageSwitchToast from '@/components/LanguageSwitchToast';
-import ThemeToggler from '@/components/ThemeToggler.astro';
 import RootLayout from './RootLayout.astro';
 ---
 
 <RootLayout>
-  <GridOverlayLayout>
-    <ThemeToggler />
+  <ActionOverlay />
+  <GridOverlay>
     <slot />
-  </GridOverlayLayout>
+  </GridOverlay>
   <LanguageSwitchToast />
 </RootLayout>
