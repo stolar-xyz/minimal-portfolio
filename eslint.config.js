@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { includeIgnoreFile } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import astro from 'eslint-plugin-astro';
-import importX from 'eslint-plugin-import-x';
+import { flatConfigs } from 'eslint-plugin-import-x';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import importSort from 'eslint-plugin-simple-import-sort';
 import typescript from 'typescript-eslint';
@@ -16,9 +16,9 @@ export default defineConfig([
   // @ts-expect-error types are not compatible
   typescript.configs.recommended,
   // @ts-expect-error types are not compatible
-  importX.flatConfigs.recommended,
+  flatConfigs.recommended,
   // @ts-expect-error types are not compatible
-  importX.flatConfigs.typescript,
+  flatConfigs.typescript,
   prettierRecommended,
   astro.configs.recommended,
   astro.configs['jsx-a11y-strict'],
