@@ -28,14 +28,6 @@
   @apply bg-orange-400 dark:bg-orange-300;
 }
 
-@utility bg-brand-3-before {
-  @apply before:bg-orange-400 dark:before:bg-orange-300;
-}
-
-@utility bg-brand-3-after {
-  @apply after:bg-orange-400 dark:after:bg-orange-300;
-}
-
 @utility text-1 {
   @apply text-gray-950 dark:text-gray-100;
 }
@@ -48,6 +40,10 @@
   @apply text-gray-600 dark:text-gray-400;
 }
 
+@utility text-states {
+  @apply text-3 hover:text-2 active:text-1 transition-colors;
+}
+
 @utility text-brand-1 {
   @apply text-orange-600 dark:text-orange-100;
 }
@@ -58,16 +54,4 @@
 
 @utility text-brand-3 {
   @apply text-orange-400 dark:text-orange-300;
-}
-
-@utility text-brand-3-before {
-  @apply before:text-orange-400 dark:before:text-orange-300;
-}
-
-@utility text-brand-3-after {
-  @apply after:text-orange-400 dark:after:text-orange-300;
-}
-
-@utility text-states {
-  @apply text-3 hover:text-2 active:text-1 transition-colors;
 }
