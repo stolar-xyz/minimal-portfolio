@@ -1,11 +1,31 @@
 /* stylelint-disable custom-property-pattern */
-
 @theme inline {
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
 }
 
 @theme {
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.25rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 2.5rem;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 3rem;
+  --text-4xl: 3.5rem;
+  --text-4xl--line-height: 4rem;
+  --text-5xl: 4.5rem;
+  --text-5xl--line-height: 5rem;
+  --text-6xl: 5.5rem;
+  --text-6xl--line-height: 6rem;
   --color-*: initial;
   --color-gray-100: #fafafa;
   --color-gray-150: #ececec;
@@ -24,7 +44,6 @@
   --color-orange-400: #e47e12;
   --color-orange-500: #cf6f09;
   --color-orange-600: #c06505;
-  --font-serif: initial;
   --animate-scale-in: scale-in 1s var(--ease-in-out) forwards;
   --animate-slide-in-up: slide-in-up 400ms var(--ease-in-out) forwards;
   --animate-slide-out-down: slide-out-down 300ms var(--ease-in-out) forwards;
