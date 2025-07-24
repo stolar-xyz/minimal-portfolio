@@ -1,7 +1,7 @@
 export type Translations = {
   switchTheme: string;
   switchLanguage: string;
-  openToCollaboration: string;
+  collaborationStatus: string;
   sections: { title: string; content: string }[];
 };
 
