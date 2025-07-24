@@ -3,7 +3,7 @@ import { type Translations } from '../types';
 export default {
   switchTheme: 'Switch theme',
   switchLanguage: 'Switch language',
-  openToCollaboration: 'Open to collaboration',
+  collaborationStatus: 'Available for cooperation',
   sections: [
     { title: 'Intro', content: 'lorem ipsum' },
     { title: 'Work', content: 'lorem ipsum' },
