@@ -19,6 +19,6 @@
   }
 
   svg {
-    @apply h-6 w-6 transition-[stroke-width] hover:stroke-[1.5] active:stroke-1 xl:h-8 xl:w-8;
+    @apply h-6 w-6 transition-[stroke-width] hover:stroke-[1.5] active:stroke-1 xl:w-8 2xl:h-8;
   }
 }
