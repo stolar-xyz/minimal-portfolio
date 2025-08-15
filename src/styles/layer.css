@@ -8,7 +8,14 @@
 
     &::before,
     &::after {
-      @apply animate-scale-in absolute top-0 bottom-0 w-px origin-[inherit] bg-gray-500 opacity-0 content-[''];
+      @apply animate-scale-in absolute top-0 bottom-0 w-px origin-[inherit] bg-gray-200 opacity-0;
+    }
+
+    @variant dark {
+      &::before,
+      &::after {
+        @apply bg-gray-800;
+      }
     }
   }
 }
