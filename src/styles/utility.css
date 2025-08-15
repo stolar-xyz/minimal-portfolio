@@ -20,14 +20,6 @@
   @apply bg-orange-400 dark:bg-orange-300;
 }
 
-@utility bg-brand-2 {
-  @apply bg-orange-400 dark:bg-orange-300;
-}
-
-@utility bg-brand-3 {
-  @apply bg-orange-400 dark:bg-orange-300;
-}
-
 @utility text-1 {
   @apply text-gray-950 dark:text-gray-100;
 }
@@ -42,18 +34,6 @@
 
 @utility text-states {
   @apply text-3 hover:text-2 active:text-1 transition-colors;
-}
-
-@utility text-brand-1 {
-  @apply text-orange-600 dark:text-orange-100;
-}
-
-@utility text-brand-2 {
-  @apply text-orange-500 dark:text-orange-200;
-}
-
-@utility text-brand-3 {
-  @apply text-orange-400 dark:text-orange-300;
 }
 
 @utility border-color-1 {
