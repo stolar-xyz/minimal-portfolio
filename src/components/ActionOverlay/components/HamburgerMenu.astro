@@ -10,7 +10,9 @@ import MenuIcon from '@/assets/icons/menu.svg';
   aria-expanded="false"
   aria-controls="navigation"
 >
-  <MenuIcon class="absolute group-aria-expanded:opacity-0" />
+  <MenuIcon
+    class="absolute z-1 group-aria-expanded:-z-1 group-aria-expanded:opacity-0"
+  />
   <CrossIcon class="not-group-aria-expanded:opacity-0" />
 </button>
 
