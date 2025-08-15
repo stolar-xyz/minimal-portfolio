@@ -1,15 +1,15 @@
 ---
-import { MIN_XL_BREAKPOINT } from '@/lib/consts';
+import { MIN_SM_BREAKPOINT } from '@/lib/consts';
 ---
 
 <div
-  class="bg-2 fixed top-1/2 hidden h-[50vh] w-px -translate-y-1/2 xl:block"
+  class="bg-3 fixed top-1/2 hidden h-[50vh] w-px -translate-y-1/2 sm:block"
   aria-hidden="true"
 >
-  <div class="bg-3 h-full" id="scroll-progress"></div>
+  <div class="text-1 h-full bg-current" id="scroll-progress"></div>
 </div>
 
-<script is:inline define:vars={{ MIN_XL_BREAKPOINT }}>
+<script is:inline define:vars={{ MIN_SM_BREAKPOINT }}>
   const scrollProgress = document.getElementById('scroll-progress');
 
   function updateScroll() {
@@ -37,7 +37,7 @@ import { MIN_XL_BREAKPOINT } from '@/lib/consts';
     }
   }
 
-  const mediaQuery = window.matchMedia(MIN_XL_BREAKPOINT);
+  const mediaQuery = window.matchMedia(MIN_SM_BREAKPOINT);
   handleBreakpointChange(mediaQuery);
 
   mediaQuery.addEventListener('change', handleBreakpointChange);
