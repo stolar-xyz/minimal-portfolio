@@ -5,16 +5,16 @@ import CrossIcon from '@/assets/icons/cross.svg';
 <div id="toast-container" class="hidden"></div>
 <template id="toast-template">
   <div
-    class="bg-1 fixed bottom-0 z-10 w-full rounded-xs border-t border-gray-600 px-6 py-9 sm:right-10 sm:bottom-11 sm:w-[333px] sm:border sm:p-4 xl:bottom-10 xl:w-[290px] xl:rounded-sm xl:p-3"
+    class="bg-1 border-color-1 fixed bottom-0 z-10 w-full rounded-xs border-t px-6 py-9 sm:right-10 sm:bottom-11 sm:w-[302px] sm:border sm:p-4 xl:bottom-10 xl:w-[337px] xl:rounded-sm xl:p-5 2xl:w-[425px] 2xl:p-6"
   >
     <div
-      class="relative grid justify-items-start gap-y-3 py-2 text-sm tracking-widest sm:gap-y-2 xl:text-xs"
+      class="text-md relative grid justify-items-start gap-y-3 py-2 xl:text-base 2xl:gap-y-3.5 2xl:text-lg"
     >
       {/* eslint-disable-next-line */}
       <a class="underline underline-offset-2"></a>
       <p class="text-2"></p>
-      <button class="absolute -top-1 -right-1">
-        <CrossIcon class="h-8 w-8 p-1 sm:h-6 sm:w-6" />
+      <button type="button" class="absolute right-0">
+        <CrossIcon class="h-4 w-4 2xl:h-6 2xl:w-6" />
       </button>
     </div>
   </div>

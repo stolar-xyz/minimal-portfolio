@@ -55,3 +55,7 @@
 @utility text-brand-3 {
   @apply text-orange-400 dark:text-orange-300;
 }
+
+@utility border-color-1 {
+  @apply border-gray-200 dark:border-gray-800;
+}
