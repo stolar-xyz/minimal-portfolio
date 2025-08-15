@@ -32,7 +32,7 @@ const ANIMATED_COLUMNS: Omit<AnimatedColumnsProps, 'direction'>[] = [
 <GridLayout
   id="grid-layout"
   gridSizes={GRID_SIZES}
-  class="transition-[opacity,visibility] duration-300 aria-hidden:invisible aria-hidden:opacity-0"
+  class="transition-visible aria-hidden:invisible aria-hidden:opacity-0"
 >
   <slot />
 </GridLayout>

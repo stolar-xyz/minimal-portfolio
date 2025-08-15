@@ -4,6 +4,10 @@
   animation-delay: calc(--value(integer) * 1ms);
 }
 
+@utility transition-visible {
+  @apply transition-[opacity,visibility] duration-300;
+}
+
 @utility bg-1 {
   @apply bg-gray-100 dark:bg-gray-950;
 }
