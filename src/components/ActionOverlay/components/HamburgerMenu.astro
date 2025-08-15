@@ -11,9 +11,11 @@ import MenuIcon from '@/assets/icons/menu.svg';
   aria-controls="navigation"
 >
   <MenuIcon
-    class="absolute z-1 group-aria-expanded:-z-1 group-aria-expanded:opacity-0"
+    class="transition-icon absolute z-1 group-aria-expanded:-z-1 group-aria-expanded:scale-75 group-aria-expanded:rotate-90 group-aria-expanded:opacity-0"
   />
-  <CrossIcon class="not-group-aria-expanded:opacity-0" />
+  <CrossIcon
+    class="transition-icon not-group-aria-expanded:scale-75 not-group-aria-expanded:-rotate-90 not-group-aria-expanded:opacity-0"
+  />
 </button>
 
 <script>

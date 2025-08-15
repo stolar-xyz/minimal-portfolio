@@ -1,11 +1,14 @@
 @utility animation-delay-* {
-  /* prettier-ignore */
   animation-delay: --value([*]);
   animation-delay: calc(--value(integer) * 1ms);
 }
 
 @utility transition-visible {
-  @apply transition-[opacity,visibility] duration-300;
+  @apply transition-[opacity,visibility];
+}
+
+@utility transition-icon {
+  @apply transition-[stroke-width,rotate,opacity,scale];
 }
 
 @utility bg-1 {

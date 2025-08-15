@@ -13,10 +13,10 @@ const { switchTheme } = await getTranslation(Astro.currentLocale);
   aria-label={switchTheme}
 >
   <SunIcon
-    class="absolute z-1 rotate-0 opacity-100 transition-[stroke-width,rotate,opacity] dark:-z-1 dark:rotate-90 dark:opacity-0"
+    class="transition-icon absolute z-1 dark:-z-1 dark:scale-75 dark:rotate-90 dark:opacity-0"
   />
   <MoonIcon
-    class="-rotate-90 opacity-0 transition-[stroke-width,rotate,opacity] dark:rotate-0 dark:opacity-100"
+    class="transition-icon not-dark:scale-75 not-dark:-rotate-90 not-dark:opacity-0"
   />
 </button>
 
