@@ -47,11 +47,11 @@
   --color-orange-400: #e47e12;
   --color-orange-500: #cf6f09;
   --color-orange-600: #c06505;
-  --animate-scale-in: scale-in 1s var(--ease-in-out) forwards;
+  --animate-scale-y-in: scale-y-in 1000ms var(--ease-in-out) forwards;
   --animate-slide-in-up: slide-in-up 400ms var(--ease-in-out) forwards;
   --animate-slide-out-down: slide-out-down 300ms var(--ease-in-out) forwards;
 
-  @keyframes scale-in {
+  @keyframes scale-y-in {
     0% {
       opacity: 0;
       transform: scaleY(0);
