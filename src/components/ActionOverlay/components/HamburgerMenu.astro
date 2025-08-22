@@ -31,6 +31,7 @@ import MenuIcon from '@/assets/icons/menu.svg';
     gridLayout?.setAttribute('aria-hidden', String(isOpen));
     navigation?.setAttribute('aria-hidden', String(!isOpen));
     document.documentElement.classList.toggle('overflow-y-hidden', isOpen);
+    document.body.classList.toggle('overflow-y-hidden', isOpen);
   };
 
   const onToggle = () => {
