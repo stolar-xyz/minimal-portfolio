@@ -2,6 +2,7 @@ export type Translations = {
   switchTheme: string;
   switchLanguage: string;
   collaborationStatus: string;
+  viewCv: string;
   sections: { title: string; content: string }[];
 };
 
