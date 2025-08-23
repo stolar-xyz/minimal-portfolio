@@ -1,0 +1,29 @@
+---
+import { getSupportedLocale, getTranslation } from '@/i18n';
+import { MIN_XL_BREAKPOINT } from '@/lib/consts';
+
+const VIEW_CV_LINK_ID = 'view-cv-link';
+
+const { viewCv } = await getTranslation(Astro.currentLocale);
+const cvFilePath =
+  `/files/CV-${getSupportedLocale(Astro.currentLocale)}.pdf` as const;
+---
+
+<a
+  id={VIEW_CV_LINK_ID}
+  rel="noopener"
+  target="_blank"
+  aria-hidden="true"
+  href={cvFilePath}
+  class="text-md/4.5 rounded-xs border border-orange-400 px-3 py-2 font-mono lowercase transition-[opacity,visibility,border-color] hover:border-orange-500 active:border-orange-600 aria-hidden:invisible aria-hidden:opacity-0 sm:px-3.5 sm:py-3 xl:px-4 xl:py-3.5 2xl:px-5 2xl:py-4 dark:border-orange-300 dark:hover:border-orange-200 dark:active:border-orange-100"
+>
+  {viewCv}
+</a>
+
+<script is:inline define:vars={{ VIEW_CV_LINK_ID, MIN_XL_BREAKPOINT }}>
+  if (window.matchMedia(MIN_XL_BREAKPOINT).matches) {
+    document
+      .getElementById(VIEW_CV_LINK_ID)
+      ?.setAttribute('aria-hidden', 'false');
+  }
+</script>
