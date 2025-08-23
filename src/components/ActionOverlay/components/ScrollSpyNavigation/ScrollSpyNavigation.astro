@@ -4,11 +4,12 @@ import { getIdFromLabel } from '@/lib';
 import { MIN_XL_BREAKPOINT } from '@/lib/consts';
 import { ACTIVE_CLASSES } from './consts';
 
+const NAVIGATION_ID = 'navigation';
 const { sections } = await getTranslation(Astro.currentLocale);
 ---
 
 <nav
-  id="navigation"
+  id={NAVIGATION_ID}
   aria-hidden="true"
   class="transition-visible aria-hidden:invisible aria-hidden:opacity-0 xl:transition-none"
 >
@@ -31,9 +32,14 @@ const { sections } = await getTranslation(Astro.currentLocale);
   </ul>
 </nav>
 
-<script is:inline define:vars={{ MIN_XL_BREAKPOINT, ACTIVE_CLASSES }}>
+<script
+  is:inline
+  define:vars={{ NAVIGATION_ID, MIN_XL_BREAKPOINT, ACTIVE_CLASSES }}
+>
   if (window.matchMedia(MIN_XL_BREAKPOINT).matches) {
-    document.getElementById('navigation')?.setAttribute('aria-hidden', 'false');
+    document
+      .getElementById(NAVIGATION_ID)
+      ?.setAttribute('aria-hidden', 'false');
   }
 
   const activeLink = [...document.querySelectorAll('[data-nav-link]')].find(
