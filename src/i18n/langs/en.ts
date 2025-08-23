@@ -4,6 +4,7 @@ export default {
   switchTheme: 'Switch theme',
   switchLanguage: 'Switch language',
   collaborationStatus: 'Available for cooperation',
+  viewCv: 'View CV',
   sections: [
     { title: 'Intro', content: 'lorem ipsum' },
     { title: 'Work', content: 'lorem ipsum' },
