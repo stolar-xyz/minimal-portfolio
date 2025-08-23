@@ -11,11 +11,15 @@ export const isSupportedLocale = (
 ): locale is SupportedLocale =>
   SUPPORTED_LOCALES.some(supportedLocale => supportedLocale === locale);
 
+export const getSupportedLocale = (
+  locale: string | undefined,
+): SupportedLocale => (isSupportedLocale(locale) ? locale : DEFAULT_LOCALE);
+
 export const getTranslation = async <Client extends boolean = false>(
   locale: SupportedLocale | (string & {}) | undefined,
   client?: Client,
 ): Promise<Client extends true ? ClientTranslations : Translations> => {
-  const lang = isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
+  const lang = getSupportedLocale(locale);
 
   if (client) {
     return (await import(`./client-langs/${lang}.ts`)).default;
