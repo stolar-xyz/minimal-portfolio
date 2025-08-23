@@ -2,11 +2,8 @@
 import { MIN_SM_BREAKPOINT } from '@/lib/consts';
 ---
 
-<div
-  class="bg-3 fixed top-1/2 hidden h-[50vh] w-px -translate-y-1/2 sm:block"
-  aria-hidden="true"
->
-  <div class="text-1 h-full bg-current" id="scroll-progress"></div>
+<div class="bg-3 hidden h-[50vh] w-px sm:block" aria-hidden="true">
+  <div class="h-full bg-current" id="scroll-progress"></div>
 </div>
 
 <script is:inline define:vars={{ MIN_SM_BREAKPOINT }}>

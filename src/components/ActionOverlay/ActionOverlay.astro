@@ -6,10 +6,11 @@ import ScrollProgress from './components/ScrollProgress.astro';
 import ScrollSpyNavigation from './components/ScrollSpyNavigation';
 import TextLogo from './components/TextLogo.astro';
 import ThemeToggler from './components/ThemeToggler.astro';
+import ViewCvLink from './components/ViewCvLink.astro';
 ---
 
 <div
-  class="pointer-events-none fixed inset-6 z-10 grid grid-cols-2 sm:inset-10 [&>div>*]:pointer-events-auto [&>div>*]:select-none"
+  class="pointer-events-none fixed inset-6 z-10 grid grid-flow-col sm:inset-10 [&>div>*]:pointer-events-auto [&>div>*]:select-none"
 >
   <div class="grid content-between justify-items-start">
     <TextLogo />
@@ -19,9 +20,12 @@ import ThemeToggler from './components/ThemeToggler.astro';
       <ThemeToggler />
     </div>
   </div>
-  <div class="flex justify-end gap-x-3 self-start sm:gap-x-6">
-    <CollaborationStatus />
-    <HamburgerMenu />
+  <div class="grid content-between justify-items-end">
+    <div class="flex gap-x-3 sm:gap-x-6">
+      <CollaborationStatus />
+      <HamburgerMenu />
+    </div>
     <ScrollProgress />
+    <ViewCvLink />
   </div>
 </div>
