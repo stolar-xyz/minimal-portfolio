@@ -43,8 +43,16 @@ import MenuIcon from '@/assets/icons/menu.svg';
 
   menuToggle?.addEventListener('click', onToggle);
   document.addEventListener('click', ({ target }) => {
-    if (isOpen && target instanceof Node && !menuToggle?.contains(target))
+    if (!isOpen || !(target instanceof Node)) return;
+
+    const isClickInsideMenu = menuToggle?.contains(target);
+    const isClickInsideToast = document
+      .getElementById('toast-container')
+      ?.contains(target);
+
+    if (!isClickInsideMenu && !isClickInsideToast) {
       onToggle();
+    }
   });
 
   document.addEventListener('keydown', ({ key }) => {
