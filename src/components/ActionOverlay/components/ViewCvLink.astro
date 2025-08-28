@@ -21,9 +21,12 @@ const cvFilePath =
 </a>
 
 <script is:inline define:vars={{ VIEW_CV_LINK_ID, MIN_XL_BREAKPOINT }}>
-  if (window.matchMedia(MIN_XL_BREAKPOINT).matches) {
-    document
-      .getElementById(VIEW_CV_LINK_ID)
-      ?.setAttribute('aria-hidden', 'false');
-  }
+  const viewCvLink = document.getElementById(VIEW_CV_LINK_ID);
+  const mediaQuery = window.matchMedia(MIN_XL_BREAKPOINT);
+
+  const setAriaHidden = ({ matches }) =>
+    viewCvLink?.setAttribute('aria-hidden', matches ? 'false' : 'true');
+
+  mediaQuery.addEventListener('change', setAriaHidden);
+  setAriaHidden(mediaQuery);
 </script>
