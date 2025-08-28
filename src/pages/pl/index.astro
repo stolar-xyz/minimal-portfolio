@@ -1,5 +1,31 @@
 ---
+import { getTranslation } from '@/i18n';
 import Layout from '@/layouts/Layout.astro';
+import { getIdFromLabel } from '@/lib';
+
+const { sections } = await getTranslation(Astro.currentLocale);
 ---
 
-<Layout />
+<Layout>
+  {
+    sections.map(({ title }) => (
+      <section id={getIdFromLabel(title)}>{title}</section>
+    ))
+  }
+</Layout>
+
+<style>
+  div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  section {
+    grid-column: span 8;
+    min-height: 100vh;
+    font-size: 3rem;
+  }
+</style>
