@@ -1,13 +1,16 @@
 ---
 import { MIN_SM_BREAKPOINT } from '@/lib/consts';
+
+const SCROLL_PROGRESS_ID = 'scroll-progress';
 ---
 
 <div class="bg-3 hidden h-[50vh] w-px sm:block" aria-hidden="true">
-  <div class="h-full bg-current" id="scroll-progress"></div>
+  <div class="h-full bg-current" id={SCROLL_PROGRESS_ID}></div>
 </div>
 
-<script is:inline define:vars={{ MIN_SM_BREAKPOINT }}>
-  const scrollProgress = document.getElementById('scroll-progress');
+<script is:inline define:vars={{ SCROLL_PROGRESS_ID, MIN_SM_BREAKPOINT }}>
+  const scrollProgress = document.getElementById(SCROLL_PROGRESS_ID);
+  const mediaQuery = window.matchMedia(MIN_SM_BREAKPOINT);
 
   function updateScroll() {
     if (scrollProgress) {
@@ -25,17 +28,15 @@ import { MIN_SM_BREAKPOINT } from '@/lib/consts';
     }
   }
 
-  function handleBreakpointChange({ matches }) {
+  const handleViewportChange = ({ matches }) => {
     if (matches) {
       updateScroll();
-      window.addEventListener('scroll', updateScroll, { passive: true });
+      window.addEventListener('scroll', updateScroll);
     } else {
       window.removeEventListener('scroll', updateScroll);
     }
-  }
+  };
 
-  const mediaQuery = window.matchMedia(MIN_SM_BREAKPOINT);
-  handleBreakpointChange(mediaQuery);
-
-  mediaQuery.addEventListener('change', handleBreakpointChange);
+  mediaQuery.addEventListener('change', handleViewportChange);
+  handleViewportChange(mediaQuery);
 </script>
