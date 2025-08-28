@@ -6,7 +6,7 @@ export default {
   collaborationStatus: 'Dostępny do współpracy',
   viewCv: 'Zobacz CV',
   sections: [
-    { title: 'Wstęp', content: 'lorem ipsum' },
+    { title: 'Intro', content: 'lorem ipsum' },
     { title: 'Praca', content: 'lorem ipsum' },
     { title: 'O mnie', content: 'lorem ipsum' },
     { title: 'Kontakt', content: 'lorem ipsum' },
