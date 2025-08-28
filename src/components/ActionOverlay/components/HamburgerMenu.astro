@@ -23,17 +23,17 @@ import MenuIcon from '@/assets/icons/menu.svg';
 
   let isOpen = false;
   const menuToggle = document.getElementById('menu-toggle');
-  const navigation = document.getElementById('navigation');
   const gridLayout = document.getElementById('grid-layout');
+  const navigation = document.getElementById('navigation');
   const viewCvLink = document.getElementById('view-cv-link');
 
   const setMenuState = () => {
+    document.documentElement.classList.toggle('overflow-y-hidden', isOpen);
+    document.documentElement.classList.toggle('touch-none', isOpen);
     menuToggle?.setAttribute('aria-expanded', String(isOpen));
     gridLayout?.setAttribute('aria-hidden', String(isOpen));
     navigation?.setAttribute('aria-hidden', String(!isOpen));
     viewCvLink?.setAttribute('aria-hidden', String(!isOpen));
-    document.documentElement.classList.toggle('overflow-y-hidden', isOpen);
-    document.documentElement.classList.toggle('touch-pinch-zoom', isOpen);
   };
 
   const onToggle = () => {
@@ -41,17 +41,30 @@ import MenuIcon from '@/assets/icons/menu.svg';
     setMenuState();
   };
 
-  menuToggle?.addEventListener('click', onToggle);
+  menuToggle?.addEventListener('click', event => {
+    event.stopPropagation();
+    onToggle();
+  });
+
   document.addEventListener('click', ({ target }) => {
     if (!isOpen || !(target instanceof Node)) return;
 
-    const isClickInsideMenu = menuToggle?.contains(target);
     const isClickInsideToast = document
       .getElementById('toast-container')
       ?.contains(target);
+    const isClickInsideNavigation = navigation?.contains(target);
+    const isClickInsideCvLink = viewCvLink?.contains(target);
 
-    if (!isClickInsideMenu && !isClickInsideToast) {
+    if (!isClickInsideToast) {
       onToggle();
+
+      if (isClickInsideNavigation || isClickInsideCvLink) {
+        const { activeElement } = document;
+
+        if (activeElement instanceof HTMLElement) {
+          activeElement.blur();
+        }
+      }
     }
   });
 
@@ -64,17 +77,14 @@ import MenuIcon from '@/assets/icons/menu.svg';
   window
     .matchMedia(MIN_XL_BREAKPOINT)
     .addEventListener('change', ({ matches }) => {
-      if (matches) {
+      if (matches && isOpen) {
         isOpen = false;
+        menuToggle?.setAttribute('aria-expanded', 'false');
         gridLayout?.setAttribute('aria-hidden', 'false');
-        navigation?.setAttribute('aria-hidden', 'false');
-        viewCvLink?.setAttribute('aria-hidden', 'false');
         document.documentElement.classList.remove(
           'overflow-y-hidden',
-          'touch-pinch-zoom',
+          'touch-none',
         );
-      } else {
-        setMenuState();
       }
     });
 </script>
