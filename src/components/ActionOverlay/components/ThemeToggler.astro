@@ -25,7 +25,7 @@ const { switchTheme } = await getTranslation(Astro.currentLocale);
   const DARK_THEME = 'dark';
   const THEME_KEY = 'theme';
 
-  const theme =
+  const currentTheme =
     localStorage.getItem(THEME_KEY) ||
     (matchMedia('(prefers-color-scheme: dark)').matches
       ? DARK_THEME
@@ -36,7 +36,7 @@ const { switchTheme } = await getTranslation(Astro.currentLocale);
     localStorage.setItem(THEME_KEY, theme);
   };
 
-  setTheme(theme);
+  setTheme(currentTheme);
   document
     ?.getElementById('theme-toggle')
     ?.addEventListener('click', () =>
