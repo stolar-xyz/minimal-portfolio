@@ -42,7 +42,16 @@ const { sections } = await getTranslation(Astro.currentLocale);
   const setAriaHidden = ({ matches }) =>
     navigation?.setAttribute('aria-hidden', matches ? 'false' : 'true');
 
-  mediaQuery.addEventListener('change', setAriaHidden);
+  mediaQuery.addEventListener('change', event => {
+    setAriaHidden(event);
+    navigation?.classList.add('transition-none');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        navigation?.classList.remove('transition-none');
+      });
+    });
+  });
+
   setAriaHidden(mediaQuery);
 
   const activeLink = [...document.querySelectorAll('[data-nav-link]')].find(
