@@ -27,6 +27,15 @@ const cvFilePath =
   const setAriaHidden = ({ matches }) =>
     viewCvLink?.setAttribute('aria-hidden', matches ? 'false' : 'true');
 
-  mediaQuery.addEventListener('change', setAriaHidden);
+  mediaQuery.addEventListener('change', event => {
+    setAriaHidden(event);
+    viewCvLink?.classList.add('transition-none');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        viewCvLink?.classList.remove('transition-none');
+      });
+    });
+  });
+
   setAriaHidden(mediaQuery);
 </script>
