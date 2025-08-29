@@ -51,29 +51,63 @@ import CrossIcon from '@/assets/icons/cross.svg';
       const closeButton = toastWrapper?.querySelector('button');
 
       if (toastWrapper && link && description && closeButton) {
+        const AUTO_HIDE_MS = 8000;
+        const SHOW_DELAY_MS = 3000;
+        const REMOVE_DELAY_MS = 600;
+
         const { toast } = await getTranslation(userBrowserLanguage, true);
         const localePath = getLocalePath(userBrowserLanguage);
 
         link.href = localePath;
         link.textContent = toast.changeLanguage;
-        link.addEventListener('mouseover', () => prefetch(localePath));
-
+        link.addEventListener('mouseenter', () => prefetch(localePath));
         description.textContent = toast.availableInYourLanguage;
+
+        let autoHideTimer: ReturnType<typeof setTimeout> | null = null;
+
+        const startAutoHideTimer = () => {
+          if (autoHideTimer) {
+            clearTimeout(autoHideTimer);
+          }
+
+          autoHideTimer = setTimeout(() => {
+            dismissLanguageSuggestion();
+            toastWrapper.classList.add('animate-slide-out-down');
+
+            setTimeout(() => {
+              container.remove();
+            }, REMOVE_DELAY_MS);
+          }, AUTO_HIDE_MS);
+        };
+
+        const clearAutoHideTimer = () => {
+          if (autoHideTimer) {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = null;
+          }
+        };
 
         closeButton.ariaLabel = toast.close;
         closeButton.addEventListener('click', () => {
           dismissLanguageSuggestion();
+          clearAutoHideTimer();
           toastWrapper.classList.add('animate-slide-out-down');
 
           setTimeout(() => {
             container.remove();
-          }, 600);
+          }, REMOVE_DELAY_MS);
         });
 
+        toastWrapper.addEventListener('mouseenter', clearAutoHideTimer);
+        toastWrapper.addEventListener('mouseleave', startAutoHideTimer);
+        toastWrapper.addEventListener('focusin', clearAutoHideTimer);
+        toastWrapper.addEventListener('focusout', startAutoHideTimer);
+
         setTimeout(() => {
+          startAutoHideTimer();
           container.classList.remove('hidden');
           toastWrapper.classList.add('animate-slide-in-up');
-        }, 3000);
+        }, SHOW_DELAY_MS);
       }
     }
   }
