@@ -14,7 +14,9 @@ const { switchLanguage } = await getTranslation(Astro.currentLocale);
     aria-expanded="false"
     aria-controls="language-menu"
   >
-    <GlobeIcon class="group-aria-expanded:stroke-[1.5]" />
+    <GlobeIcon
+      class="group-aria-expanded:stroke-[1.5] group-aria-expanded:active:stroke-1"
+    />
   </button>
   <ul
     id="language-menu"
